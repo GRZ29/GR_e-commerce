@@ -1,7 +1,10 @@
+using GR.System.DataAccess.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -26,7 +29,13 @@ namespace GR.System.Services
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
+            services.AddDbContext<ApplicationDbContext>
+                (options =>
+                         options.UseSqlServer
+                             (Configuration.GetConnectionString("DefaultConnection")));
+            services.AddIdentity<IdentityUser, IdentityRole>()
+                .AddDefaultTokenProviders()
+                .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -48,6 +57,7 @@ namespace GR.System.Services
 
             app.UseRouting();
 
+            //app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
