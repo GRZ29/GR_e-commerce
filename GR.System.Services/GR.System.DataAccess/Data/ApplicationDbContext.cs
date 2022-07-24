@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using GR.System.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -14,5 +15,16 @@ namespace GR.System.DataAccess.Data
         {
 
         }
+
+
+        public DbSet<Articulos> Articulos { get; set; }
+        public DbSet<Categorias> Categorias { get; set; }
+        public DbSet<Colores> Colores { get; set; }
+        public DbSet<Descripcion> Descripcion { get; set; }
+        public DbSet<DescripcionAdicional> DescripcionAdicional { get; set; }
+        public DbSet<Detalles> Detalles { get; set; }
+        public DbSet<Precio> Precio { get; set; }
+        public DbSet<Stock> Stock { get; set; }
+        public DbSet<TipColores> TipColores { get; set; }
     }
 }
