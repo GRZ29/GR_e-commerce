@@ -1,4 +1,6 @@
 using GR.System.DataAccess.Data;
+using GR.System.DataAccess.Repositorio;
+using GR.System.DataAccess.Repositorio.IRepositorio;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -36,6 +38,7 @@ namespace GR.System.Services
             services.AddIdentity<IdentityUser, IdentityRole>()
                 .AddDefaultTokenProviders()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+            services.AddScoped<IUnidadTrabajo, UnidadTrabajo>();
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
