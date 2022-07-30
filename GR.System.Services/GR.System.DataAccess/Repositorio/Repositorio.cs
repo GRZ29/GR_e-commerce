@@ -1,5 +1,6 @@
 ﻿using GR.System.DataAccess.Data;
 using GR.System.DataAccess.Repositorio.IRepositorio;
+using GR.System.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -16,10 +17,11 @@ namespace GR.System.DataAccess.Repositorio
         {
             _db = db;
             _dbSet = _db.Set<T>();
+            _datos = _db.Set<Detalles>();
         }
-
+        
         readonly DbContext _db;
-
+        internal DbSet<Detalles> _datos;
         internal DbSet<T> _dbSet;
 
         public void Agregar(T entidad)
@@ -52,9 +54,11 @@ namespace GR.System.DataAccess.Repositorio
             return query.FirstOrDefault<T>();
         }
 
-        public IEnumerable<T> Listar(Expression<Func<T, bool>> filtro = null, Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, string propiedades = null)
+        public IEnumerable<T> Listar(Expression<Func<T, bool>> filtro = null, Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, string propiedades = null, string propiedadesDentro = null)
         {
             IQueryable<T> query = _dbSet;
+
+            IQueryable<Detalles> detalles = _datos;
 
             if (filtro != null)
             {
@@ -67,6 +71,20 @@ namespace GR.System.DataAccess.Repositorio
                 {
                     query = query.Include(propiedad);
                 }
+            }
+
+            if (!string.IsNullOrWhiteSpace(propiedadesDentro))
+            {
+                foreach (var propiedadDentro in propiedadesDentro.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+                {
+                    detalles = detalles.Include(propiedadDentro);
+                }
+
+                //query = (IQueryable<T>)detalles;
+                
+                //var list3 = query.Concat(query);
+
+                //return list3;
             }
 
             if (orderBy != null)
