@@ -14,6 +14,8 @@ namespace GR.System.DataAccess.Repositorio.IRepositorio
 
         IRepositorioStock Stock { get; }
 
+        IRepositorioDetalle Detalle { get; }
+
         void Guardar();
     }
 }
