@@ -15,5 +15,7 @@ namespace GR.System.Models
 
         [Column(TypeName = "decimal(18,4)")]
         public decimal Iva { get; set; }
+
+        public double Costo { get; set; }
     }
 }
