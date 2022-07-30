@@ -18,6 +18,9 @@ namespace GR.System.DataAccess.Repositorio
             Categoria = new RepositorioCategoria(db);
             Stock = new RepositorioStock(db);
             Detalle = new RepositorioDetalle(db);
+            Descripcion = new RepositorioDescripcion(db);
+            DescripcionAdicional = new RepositorioDescripcionAdicional(db);
+
         }
 
         readonly ApplicationDbContext _db;
@@ -29,6 +32,10 @@ namespace GR.System.DataAccess.Repositorio
         public IRepositorioStock Stock { get; private set; }
 
         public IRepositorioDetalle Detalle { get; private set; }
+
+        public IRepositorioDescripcion Descripcion { get; private set; }
+
+        public IRepositorioDescripcionAdicional DescripcionAdicional { get; private set; }
 
         public void Dispose()
         {

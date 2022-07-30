@@ -16,6 +16,10 @@ namespace GR.System.DataAccess.Repositorio.IRepositorio
 
         IRepositorioDetalle Detalle { get; }
 
+        IRepositorioDescripcion Descripcion { get; }
+
+        IRepositorioDescripcionAdicional DescripcionAdicional { get; }
+
         void Guardar();
     }
 }
