@@ -54,7 +54,7 @@ namespace GR.System.DataAccess.Repositorio
             return query.FirstOrDefault<T>();
         }
 
-        public IEnumerable<T> Listar(Expression<Func<T, bool>> filtro = null, Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, string propiedades = null, string propiedadesDentro = null)
+        public IEnumerable<T> Listar(Expression<Func<T, bool>> filtro = null, Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, string propiedades = null)
         {
             IQueryable<T> query = _dbSet;
 
@@ -72,20 +72,6 @@ namespace GR.System.DataAccess.Repositorio
                     query = query.Include(propiedad);
                 }
             }
-
-            //if (!string.IsNullOrWhiteSpace(propiedadesDentro))
-            //{
-            //    foreach (var propiedadDentro in propiedadesDentro.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
-            //    {
-            //        detalles = detalles.Include(propiedadDentro);
-            //    }
-
-            //    //query = (IQueryable<T>)detalles;
-                
-            //    //var list3 = query.Concat(query);
-
-            //    //return list3;
-            //}
 
             if (orderBy != null)
             {
