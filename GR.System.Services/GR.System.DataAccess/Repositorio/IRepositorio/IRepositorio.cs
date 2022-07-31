@@ -13,7 +13,7 @@ namespace GR.System.DataAccess.Repositorio.IRepositorio
 
         T Buscar(Expression<Func<T, bool>> filtro = null, string propiedades = null);
 
-        IEnumerable<T> Listar(Expression<Func<T, bool>> filtro = null, Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, string propiedades = null, string propiedadesDentro = null);
+        IEnumerable<T> Listar(Expression<Func<T, bool>> filtro = null, Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, string propiedades = null);
 
         void Agregar(T entidad);
 

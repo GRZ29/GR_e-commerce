@@ -73,19 +73,19 @@ namespace GR.System.DataAccess.Repositorio
                 }
             }
 
-            if (!string.IsNullOrWhiteSpace(propiedadesDentro))
-            {
-                foreach (var propiedadDentro in propiedadesDentro.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
-                {
-                    detalles = detalles.Include(propiedadDentro);
-                }
+            //if (!string.IsNullOrWhiteSpace(propiedadesDentro))
+            //{
+            //    foreach (var propiedadDentro in propiedadesDentro.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+            //    {
+            //        detalles = detalles.Include(propiedadDentro);
+            //    }
 
-                //query = (IQueryable<T>)detalles;
+            //    //query = (IQueryable<T>)detalles;
                 
-                //var list3 = query.Concat(query);
+            //    //var list3 = query.Concat(query);
 
-                //return list3;
-            }
+            //    //return list3;
+            //}
 
             if (orderBy != null)
             {
