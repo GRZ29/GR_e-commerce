@@ -38,6 +38,8 @@ namespace GR.System.Services.Controllers
             //get information by repository
             var result = _unidadTrabajo.Articulo.Listar(propiedades: "Categorias,Precio,Detalles.Descripcion,Detalles.DescripcionAdicional");
 
+            //.Where(c => c.Categorias.NomCategoria == "ESCRITORIO")
+
 
             return new JsonResult(new { success = true, data = result });
 
