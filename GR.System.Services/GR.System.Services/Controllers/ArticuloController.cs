@@ -29,10 +29,14 @@ namespace GR.System.Services.Controllers
         [HttpGet]
         public IActionResult GetArticulos()
         {
-            var result = _context.Articulos.Include(x => x.Categorias)
-                                           .Include(x => x.Precio)
-                                           .Include(x => x.Detalles.Descripcion)
-                                           .Include(x => x.Detalles.DescripcionAdicional);
+            //get information by entity framework
+            //var result = _context.Articulos.Include(x => x.Categorias)
+            //                               .Include(x => x.Precio)
+            //                               .Include(x => x.Detalles.Descripcion)
+            //                               .Include(x => x.Detalles.DescripcionAdicional);
+
+            //get information by repository
+            var result = _unidadTrabajo.Articulo.Listar(propiedades: "Categorias,Precio,Detalles.Descripcion,Detalles.DescripcionAdicional");
 
 
             return new JsonResult(new { success = true, data = result });
