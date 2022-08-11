@@ -34,12 +34,10 @@ namespace GR.System.Services.Controllers
             //                               .Include(x => x.Precio)
             //                               .Include(x => x.Detalles.Descripcion)
             //                               .Include(x => x.Detalles.DescripcionAdicional);
-
+            //                               .Where(c => c.Categorias.NomCategoria == "ESCRITORIO")
+                        
             //get information by repository
             var result = _unidadTrabajo.Articulo.Listar(propiedades: "Categorias,Precio,Detalles.Descripcion,Detalles.DescripcionAdicional");
-
-            //.Where(c => c.Categorias.NomCategoria == "ESCRITORIO")
-
 
             return new JsonResult(new { success = true, data = result });
 
