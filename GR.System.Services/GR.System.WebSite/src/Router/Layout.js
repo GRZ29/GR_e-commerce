@@ -34,7 +34,7 @@ const Layout = () => {
               </li>
               <li className="nav-item">
                 <Link className="nav-link" to="/Details">
-                  Details
+                  Product detail
                 </Link>
               </li>
             </ul>
