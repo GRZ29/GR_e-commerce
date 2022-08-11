@@ -1,11 +1,7 @@
-import React from 'react';
+import React from "react";
 
 const NoPage = () => {
-    return (
-        <div>
-            Elmer se la come todasss
-        </div>
-    );
+  return <div>SU MADRE</div>;
 };
 
 export default NoPage;

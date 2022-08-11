@@ -26,27 +26,27 @@ const Layout = () => {
                 <Link className="nav-link active" to="/">
                   Home
                 </Link>{" "}
-                
               </li>
               <li className="nav-item">
                 <Link className="nav-link" to="/Shop">
                   Shop
                 </Link>
-              
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/Cart">
-                Cart
+                <Link className="nav-link" to="/Details">
+                  Details
                 </Link>
-               
               </li>
             </ul>
             <ul className="navbar-nav ms-auto">
               <li className="nav-item">
-                <a className="nav-link">
-                  <i className="fas fa-dolly-flatbed me-1 text-gray"></i>Cart
+                <div className="nav-link">
+                  <i className="fas fa-dolly-flatbed me-1 text-gray"></i>
+                  <Link className="" to="/Cart">
+                    Cart
+                  </Link>
                   <small className="text-gray fw-normal">(2)</small>
-                </a>
+                </div>
               </li>
               <li className="nav-item">
                 <a className="nav-link">
