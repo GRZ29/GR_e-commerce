@@ -28,4 +28,8 @@
     <ProjectReference Include="..\GR.System.Utility\GR.System.Utility.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Resources\" />
+  </ItemGroup>
+
 </Project>

@@ -26,5 +26,7 @@ namespace GR.System.DataAccess.Data
         public DbSet<Precio> Precio { get; set; }
         public DbSet<Stock> Stock { get; set; }
         public DbSet<TipColores> TipColores { get; set; }
+        public DbSet<ImgArticulos> ImgArticulos { get; set; }
+
     }
 }
