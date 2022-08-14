@@ -1,10 +1,23 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { BASE_URL, CreateAPIEndPoint, ENDPOINTS } from "../api";
 import product1 from "../assets/img/product-detail-1.jpg";
 import product2 from "../assets/img/product-detail-2.jpg";
 import product3 from "../assets/img/product-detail-3.jpg";
 import product4 from "../assets/img/product-detail-4.jpg";
 
 const Details = () => {
+  const [imgArticulo, setImgArticulo] = useState([]);
+  const [imgIndex, setImgIndex] = useState(0);
+
+  useEffect(() => {
+    CreateAPIEndPoint(ENDPOINTS.ImgArticulo)
+      .fetch()
+      .then((res) => {
+        setImgArticulo(res.data);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
   return (
     <section className="py-5">
       <div className="container">
@@ -16,8 +29,16 @@ const Details = () => {
                 <div className="swiper product-slider-thumbs">
                   <div className="swiper-wrapper">
                     <div className="swiper-slide h-auto swiper-thumb-item mb-3">
-                      <img className="w-100" src={product1} alt="..." />
+                      {imgArticulo.map((item) => (
+                        <img
+                          key={item.id}
+                          className="w-100"
+                          src={BASE_URL + "resources/" + item.img}
+                          alt="..."
+                        />
+                      ))}
                     </div>
+
                     <div className="swiper-slide h-auto swiper-thumb-item mb-3">
                       <img className="w-100" src={product2} alt="..." />
                     </div>

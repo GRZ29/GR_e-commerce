@@ -20,6 +20,7 @@ namespace GR.System.DataAccess.Repositorio
             Detalle = new RepositorioDetalle(db);
             Descripcion = new RepositorioDescripcion(db);
             DescripcionAdicional = new RepositorioDescripcionAdicional(db);
+            ImgArticulo = new RepositorioImgArticulo(db);
 
         }
 
@@ -36,6 +37,8 @@ namespace GR.System.DataAccess.Repositorio
         public IRepositorioDescripcion Descripcion { get; private set; }
 
         public IRepositorioDescripcionAdicional DescripcionAdicional { get; private set; }
+
+        public IRepositorioImgArticulo ImgArticulo { get; private set; }
 
         public void Dispose()
         {

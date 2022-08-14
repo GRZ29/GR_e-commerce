@@ -16,6 +16,7 @@ import Details from "./Details/Details";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
+  console.log("hey");
   return (
     <div className="App">
       <BrowserRouter>

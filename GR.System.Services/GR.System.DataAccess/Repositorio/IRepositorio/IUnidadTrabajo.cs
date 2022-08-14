@@ -20,6 +20,8 @@ namespace GR.System.DataAccess.Repositorio.IRepositorio
 
         IRepositorioDescripcionAdicional DescripcionAdicional { get; }
 
+        IRepositorioImgArticulo ImgArticulo { get; }
+
         void Guardar();
     }
 }
