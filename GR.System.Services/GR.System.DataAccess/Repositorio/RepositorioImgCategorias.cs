@@ -9,23 +9,25 @@ using System.Threading.Tasks;
 
 namespace GR.System.DataAccess.Repositorio
 {
-    public class RepositorioImgArticulo : Repositorio<ImgArticulos>, IRepositorioImgArticulo
+    public class RepositorioImgCategorias : Repositorio<ImgCategorias>, IRepositorioImgCategorias
     {
-        public RepositorioImgArticulo(ApplicationDbContext db) : base(db)
+        public RepositorioImgCategorias(ApplicationDbContext db) : base(db)
         {
             _db = db;
         }
 
         readonly ApplicationDbContext _db;
 
-        public void Actualizar(ImgArticulos imgArticulos)
+        public void Actualizar(ImgCategorias imgCategorias)
         {
-            var i = _db.ImgArticulos.FirstOrDefault(s => s.Id == imgArticulos.Id);
+            var i = _db.ImgArticulos.FirstOrDefault(s => s.Id == imgCategorias.Id);
 
             if (i == null)
             {
                 return;
             }
+
+            i.Img = imgCategorias.Img;
         }
     }
 }

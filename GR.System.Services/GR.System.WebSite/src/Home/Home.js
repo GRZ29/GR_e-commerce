@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from 'react';
 import product from "../assets/img/product-5-alt-1.jpg";
 import hero from "../assets/img/hero-banner-alt.jpg";
 import categorie1 from "../assets/img/cat-img-1.jpg";
@@ -6,7 +6,34 @@ import categorie2 from "../assets/img/cat-img-2.jpg";
 import categorie3 from "../assets/img/cat-img-3.jpg";
 import categorie4 from "../assets/img/cat-img-4.jpg";
 
+
+import { BASE_URL, CreateAPIEndPoint, ENDPOINTS } from "../api";
+
+
 const Home = () => {
+
+const [imgArticulo, setImgArticulo] = useState([]);
+
+
+  const getInfo = () =>{
+
+    CreateAPIEndPoint(ENDPOINTS.ImgArticulo)
+      .fetch()
+      .then((res) => {
+        setImgArticulo(res.data);
+        console.log(res.data[0].img);
+        console.log(imgArticulo)
+      })
+      .catch((err) => console.log(err));
+
+  }
+
+  useEffect(() => {
+    getInfo();
+
+  },[]);
+
+
   return (
     <div>
       <div className="modal fade" id="productView" tabIndex="-1">
@@ -21,24 +48,24 @@ const Home = () => {
             <div className="modal-body p-0">
               <div className="row align-items-stretch">
                 <div className="col-lg-6 p-lg-0">
-                  <a
+                  <span
                     className="glightbox product-view d-block h-100 bg-cover bg-center"
                     style={{ background: `url(${product})` }}
                     data-gallery="gallery1"
                     data-glightbox="Red digital smartwatch"
-                  ></a>
-                  <a
+                  ></span>
+                  <span
                     className="glightbox d-none"
                     href="img/product-5-alt-1.jpg"
                     data-gallery="gallery1"
                     data-glightbox="Red digital smartwatch"
-                  ></a>
-                  <a
+                  ></span>
+                  <span
                     className="glightbox d-none"
                     href="img/product-5-alt-2.jpg"
                     data-gallery="gallery1"
                     data-glightbox="Red digital smartwatch"
-                  ></a>
+                  ></span>
                 </div>
                 <div className="col-lg-6">
                   <div className="p-4 my-md-4">
@@ -89,14 +116,14 @@ const Home = () => {
                         </div>
                       </div>
                       <div className="col-sm-5">
-                        <a className="btn btn-dark btn-sm w-100 h-100 d-flex align-items-center justify-content-center px-0">
+                        <span className="btn btn-dark btn-sm w-100 h-100 d-flex align-items-center justify-content-center px-0">
                           Add to cart
-                        </a>
+                        </span>
                       </div>
                     </div>
-                    <a className="btn btn-link text-dark text-decoration-none p-0">
+                    <span className="btn btn-link text-dark text-decoration-none p-0">
                       <i className="far fa-heart me-2"></i>Add to wish list
-                    </a>
+                    </span>
                   </div>
                 </div>
               </div>
@@ -137,7 +164,7 @@ const Home = () => {
           <div className="row">
             <div className="col-md-4">
               <a className="category-item" href="shop.html">
-                <img className="img-fluid" src={categorie1} alt="" />
+                {/* <img className="img-fluid" src={BASE_URL + "resources/categorias" + imgArticulo[0].img} alt="" /> */}
                 <strong className="category-item-title">Clothes</strong>
               </a>
             </div>

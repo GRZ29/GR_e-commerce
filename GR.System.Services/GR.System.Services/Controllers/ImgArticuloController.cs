@@ -2,6 +2,7 @@
 using GR.System.DataAccess.Repositorio.IRepositorio;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,5 +31,33 @@ namespace GR.System.Services.Controllers
             return Ok(result);
 
         }
+
+        [HttpGet("{id}")]
+        public IActionResult GetImgArticulosById(int id = 0)
+        {
+            if (id == 0)
+                return new JsonResult(new { Error = "Tienes que buscar un id" });
+
+            var result = _context.ImgArticulos.Where(x => x.IdArticulo == id);
+
+            if (result.Count() == 0)
+                return new JsonResult(new { Error = "Error vacio" }); ;
+
+            return new JsonResult(result);
+        }
+
+        //[HttpGet]
+        //public IActionResult GetImgCategorias(int id = 0)
+        //{
+        //    if (id == 0)
+        //        return new JsonResult(new { Error = "Tienes que buscar un id" });
+
+        //    var result = _context.ImgArticulos.Where(x => x.IdArticulo == id);
+
+        //    if (result.Count() == 0)
+        //        return new JsonResult(new { Error = "Error vacio" }); ;
+
+        //    return new JsonResult(result);
+        //}
     }
 }

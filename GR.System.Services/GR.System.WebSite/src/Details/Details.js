@@ -7,7 +7,6 @@ import product4 from "../assets/img/product-detail-4.jpg";
 
 const Details = () => {
   const [imgArticulo, setImgArticulo] = useState([]);
-  const [imgIndex, setImgIndex] = useState(0);
 
   useEffect(() => {
     CreateAPIEndPoint(ENDPOINTS.ImgArticulo)
@@ -29,9 +28,9 @@ const Details = () => {
                 <div className="swiper product-slider-thumbs">
                   <div className="swiper-wrapper">
                     <div className="swiper-slide h-auto swiper-thumb-item mb-3">
-                      {imgArticulo.map((item) => (
+                      {imgArticulo.map((item,index) => (
                         <img
-                          key={item.id}
+                          key={index}
                           className="w-100"
                           src={BASE_URL + "resources/" + item.img}
                           alt="..."

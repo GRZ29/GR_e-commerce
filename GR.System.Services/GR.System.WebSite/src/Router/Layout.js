@@ -49,15 +49,15 @@ const Layout = () => {
                 </div>
               </li>
               <li className="nav-item">
-                <a className="nav-link">
+                <span className="nav-link">
                   <i className="far fa-heart me-1"></i>
                   <small className="text-gray fw-normal"> (0)</small>
-                </a>
+                </span>
               </li>
               <li className="nav-item">
-                <a className="nav-link">
+                <span className="nav-link">
                   <i className="fas fa-user me-1 text-gray fw-normal"></i>Login
-                </a>
+                </span>
               </li>
             </ul>
           </div>

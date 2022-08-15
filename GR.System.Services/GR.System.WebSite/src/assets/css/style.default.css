@@ -2342,8 +2342,8 @@ textarea.form-control-lg {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  -webkit-print-color-adjust: exact;
-  color-adjust: exact;
+  /* -webkit-print-color-adjust: exact;
+  color-adjust: exact; */
 }
 
 .form-check-input[type="checkbox"] {
@@ -12048,9 +12048,9 @@ a.text-hover-dark:focus, a.text-hover-dark:hover {
   position: relative;
 }
 
-.headings-font-family {
+/* .headings-font-family {
   font-family: !important;
-}
+} */
 
 .no-select {
   cursor: default;

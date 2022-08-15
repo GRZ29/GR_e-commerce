@@ -27,6 +27,6 @@ namespace GR.System.DataAccess.Data
         public DbSet<Stock> Stock { get; set; }
         public DbSet<TipColores> TipColores { get; set; }
         public DbSet<ImgArticulos> ImgArticulos { get; set; }
-
+        public DbSet<ImgCategorias> ImgCategorias { get; set; }
     }
 }

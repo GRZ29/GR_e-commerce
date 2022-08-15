@@ -15,7 +15,7 @@ const Car = () => {
               <nav aria-label="breadcrumb">
                 <ol className="breadcrumb justify-content-lg-end mb-0 px-0 bg-light">
                   <li className="breadcrumb-item">
-                    <a className="text-dark">Home</a>
+                    <span className="text-dark">Home</span>
                   </li>
                   <li className="breadcrumb-item active" aria-current="page">
                     Cart
@@ -65,14 +65,14 @@ const Car = () => {
                   <tr>
                     <th className="ps-0 py-3 border-light" scope="row">
                       <div className="d-flex align-items-center">
-                        <a className="reset-anchor d-block animsition-link">
+                        <span className="reset-anchor d-block animsition-link">
                           <img src={product3} alt="..." width="70" />
-                        </a>
+                        </span>
                         <div className="ms-3">
                           <strong className="h6">
-                            <a className="reset-anchor animsition-link">
+                            <span className="reset-anchor animsition-link">
                               Red digital smartwatch
-                            </a>
+                            </span>
                           </strong>
                         </div>
                       </div>
@@ -103,9 +103,9 @@ const Car = () => {
                       <p className="mb-0 small">$250</p>
                     </td>
                     <td className="p-3 align-middle border-light">
-                      <a className="reset-anchor">
+                      <span className="reset-anchor">
                         <i className="fas fa-trash-alt small text-muted"></i>
-                      </a>
+                      </span>
                     </td>
                   </tr>
                   <tr>
@@ -120,9 +120,9 @@ const Car = () => {
                         </a> */}
                         <div className="ms-3">
                           <strong className="h6">
-                            <a className="reset-anchor animsition-link">
+                            <span className="reset-anchor animsition-link">
                               Apple watch
-                            </a>
+                            </span>
                           </strong>
                         </div>
                       </div>
@@ -153,9 +153,9 @@ const Car = () => {
                       <p className="mb-0 small">$250</p>
                     </td>
                     <td className="p-3 align-middle border-0">
-                      <a className="reset-anchor">
+                      <span className="reset-anchor">
                         <i className="fas fa-trash-alt small text-muted"></i>
-                      </a>
+                      </span>
                     </td>
                   </tr>
                 </tbody>
@@ -165,16 +165,16 @@ const Car = () => {
             <div className="bg-light px-4 py-3">
               <div className="row align-items-center text-center">
                 <div className="col-md-6 mb-3 mb-md-0 text-md-start">
-                  <a className="btn btn-link p-0 text-dark btn-sm">
+                  <span className="btn btn-link p-0 text-dark btn-sm">
                     <i className="fas fa-long-arrow-alt-left me-2"> </i>
                     Continue shopping
-                  </a>
+                  </span>
                 </div>
                 <div className="col-md-6 text-md-end">
-                  <a className="btn btn-outline-dark btn-sm">
+                  <span className="btn btn-outline-dark btn-sm">
                     Procceed to checkout
                     <i className="fas fa-long-arrow-alt-right ms-2"></i>
-                  </a>
+                  </span>
                 </div>
               </div>
             </div>

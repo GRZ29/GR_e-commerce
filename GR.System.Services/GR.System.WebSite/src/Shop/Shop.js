@@ -14,7 +14,7 @@ const Shop = () => {
               <nav aria-label="breadcrumb">
                 <ol className="breadcrumb justify-content-lg-end mb-0 px-0 bg-light">
                   <li className="breadcrumb-item">
-                    <a className="text-dark">Home</a>
+                    <span className="text-dark">Home</span>
                   </li>
                   <li className="breadcrumb-item active" aria-current="page">
                     Shop
@@ -37,10 +37,10 @@ const Shop = () => {
               </div>
               <ul className="list-unstyled small text-muted ps-lg-4 font-weight-normal">
                 <li className="mb-2">
-                  <a className="reset-anchor">Women's T-Shirts</a>
+                  <span className="reset-anchor">Women's T-Shirts</span>
                 </li>
                 <li className="mb-2">
-                  <a className="reset-anchor">Men's T-Shirts</a>
+                  <span className="reset-anchor">Men's T-Shirts</span>
                 </li>
               </ul>
             </div>
@@ -80,7 +80,7 @@ const Shop = () => {
                       <div className="product-overlay">
                         <ul className="mb-0 list-inline">
                           <li className="list-inline-item m-0 p-0">
-                            <a className="btn btn-sm btn-dark">Add to cart</a>
+                            <span className="btn btn-sm btn-dark">Add to cart</span>
                           </li>
                           <li className="list-inline-item mr-0">
                             <a
@@ -113,7 +113,7 @@ const Shop = () => {
                       <div className="product-overlay">
                         <ul className="mb-0 list-inline">
                           <li className="list-inline-item m-0 p-0">
-                            <a className="btn btn-sm btn-dark">Add to cart</a>
+                            <span className="btn btn-sm btn-dark">Add to cart</span>
                           </li>
                           <li className="list-inline-item mr-0">
                             <a

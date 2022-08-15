@@ -99,5 +99,7 @@ namespace GR.System.DataAccess.Repositorio
         {
             _dbSet.RemoveRange(entidades);
         }
+
+     
     }
 }
