@@ -16,7 +16,6 @@ namespace GR.System.DataAccess.Data
 
         }
 
-
         public DbSet<Articulos> Articulos { get; set; }
         public DbSet<Categorias> Categorias { get; set; }
         public DbSet<Colores> Colores { get; set; }
@@ -28,5 +27,6 @@ namespace GR.System.DataAccess.Data
         public DbSet<TipColores> TipColores { get; set; }
         public DbSet<ImgArticulos> ImgArticulos { get; set; }
         public DbSet<ImgCategorias> ImgCategorias { get; set; }
+        public DbSet<ImgPreviewArticulos> ImgPreviewArticulos { get; set; }
     }
 }

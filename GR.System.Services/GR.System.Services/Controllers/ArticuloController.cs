@@ -37,7 +37,7 @@ namespace GR.System.Services.Controllers
             //                               .Where(c => c.Categorias.NomCategoria == "ESCRITORIO")
                         
             //get information by repository
-            var result = _unidadTrabajo.Articulo.Listar(propiedades: "Categorias,Precio,Detalles.Descripcion,Detalles.DescripcionAdicional");
+            var result = _unidadTrabajo.Articulo.Listar(propiedades: "Categorias,Precio,Detalles.Descripcion,Detalles.DescripcionAdicional,ImgPreviewArticulos");
 
             return new JsonResult(new { success = true, data = result });
 

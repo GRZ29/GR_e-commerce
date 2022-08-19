@@ -19,6 +19,8 @@ namespace GR.System.Models
 
         public int IdDetalle { get; set; }
 
+        public int IdImgPreviewArticulo { get; set; }
+
         public string NomArticulo { get; set; }
 
         [ForeignKey("IdCategoria")]
@@ -29,5 +31,8 @@ namespace GR.System.Models
 
         [ForeignKey("IdDetalle")]
         public Detalles Detalles { get; set; }
+
+        [ForeignKey("IdImgPreviewArticulo")]
+        public ImgPreviewArticulos ImgPreviewArticulos { get; set; }
     }
 }

@@ -26,7 +26,7 @@ namespace GR.System.Services.Controllers
         [HttpGet]
         public IActionResult GetImgArticulos()
         {
-            var result = _unidadTrabajo.ImgArticulo.Listar(propiedades: "Articulos");
+            var result = _unidadTrabajo.ImgArticulo.Listar(propiedades: "Articulos.Categorias");
 
             return Ok(result);
 
