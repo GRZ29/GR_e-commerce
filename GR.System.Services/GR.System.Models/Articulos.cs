@@ -34,5 +34,6 @@ namespace GR.System.Models
 
         [ForeignKey("IdImgPreviewArticulo")]
         public ImgPreviewArticulos ImgPreviewArticulos { get; set; }
+
     }
 }

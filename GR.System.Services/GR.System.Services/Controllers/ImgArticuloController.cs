@@ -43,7 +43,7 @@ namespace GR.System.Services.Controllers
             if (result.Count() == 0)
                 return new JsonResult(new { Error = "Error vacio" }); ;
 
-            return new JsonResult(result);
+            return new JsonResult(result.Include(x => x.Articulos.Precio).Include(x => x.Articulos.Detalles.Descripcion).Include(x => x.Articulos.Detalles.DescripcionAdicional));
         }
 
         //[HttpGet]

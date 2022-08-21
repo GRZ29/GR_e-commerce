@@ -27,7 +27,6 @@ namespace GR.System.Services.Controllers
             var result = _unidadTrabajo.ImgCategorias.Listar();
 
             return Ok(result);
-
         }
 
     }
