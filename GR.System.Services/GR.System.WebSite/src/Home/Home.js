@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 import product from "../assets/img/product-5-alt-1.jpg";
 import hero from "../assets/img/hero-banner-alt.jpg";
 import categorie1 from "../assets/img/cat-img-1.jpg";
@@ -6,33 +6,25 @@ import categorie2 from "../assets/img/cat-img-2.jpg";
 import categorie3 from "../assets/img/cat-img-3.jpg";
 import categorie4 from "../assets/img/cat-img-4.jpg";
 
-
 import { BASE_URL, CreateAPIEndPoint, ENDPOINTS } from "../api";
 
-
 const Home = () => {
+  const [imgArticulo, setImgArticulo] = useState([]);
 
-const [imgArticulo, setImgArticulo] = useState([]);
-
-
-  const getInfo = () =>{
-
+  const getInfo = () => {
     CreateAPIEndPoint(ENDPOINTS.ImgArticulo)
       .fetch()
       .then((res) => {
         setImgArticulo(res.data);
         console.log(res.data[0].img);
-        console.log(imgArticulo)
+        console.log(imgArticulo);
       })
       .catch((err) => console.log(err));
-
-  }
+  };
 
   useEffect(() => {
     getInfo();
-
-  },[]);
-
+  }, []);
 
   return (
     <div>

@@ -1,17 +1,17 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-import '../src/assets/css/style.default.css';
-import '../src/assets/css/custom.css';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import "../src/assets/css/style.default.css";
+import "../src/assets/css/custom.css";
+import { ContextProvider } from "./hooks/useStateContext";
 
-
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <>    
+  <ContextProvider>
     <App />
-  </>
+  </ContextProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function

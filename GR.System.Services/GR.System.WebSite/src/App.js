@@ -6,16 +6,10 @@ import NoPage from "./NoPage/NoPage";
 import Layout from "./Router/Layout";
 import Details from "./Details/Details";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from "react";
+import { Context } from "./hooks/useStateContext";
 
 function App() {
-  
-
-  useEffect(() => {
-    
-    console.log("HOLA")
-  },[]);
-
   return (
     <div className="App">
       <BrowserRouter>
@@ -31,8 +25,6 @@ function App() {
       </BrowserRouter>
     </div>
   );
-
-
 }
 
 export default App;

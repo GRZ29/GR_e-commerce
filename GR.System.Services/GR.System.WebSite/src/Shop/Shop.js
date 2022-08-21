@@ -1,8 +1,32 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Articulos from "./Articulos";
 import Categorias from "./Categorias";
+import { CreateAPIEndPoint, ENDPOINTS } from "../api";
+import Details from "../Details/Details";
+import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import useStateContext, { Context } from "../hooks/useStateContext";
 
 const Shop = () => {
+  const [articulos, setArticulos] = useState([]);
+  const { context, setContext } = useStateContext();
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    CreateAPIEndPoint(ENDPOINTS.Articulo)
+      .fetch()
+      .then((res) => {
+        setArticulos(res.data.data);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
+  const handleIdSelected = (id) => {
+    setContext({ articuloSelected: id });
+    navigate("/Details");
+  };
+
   return (
     <div>
       <section className="py-5 bg-light">
@@ -54,7 +78,10 @@ const Shop = () => {
                   </ul>
                 </div>
               </div>
-              <Articulos />
+              <Articulos
+                handleIdSelected={handleIdSelected}
+                articulos={articulos}
+              />
               <nav aria-label="Page navigation example">
                 <ul className="pagination justify-content-center justify-content-lg-end">
                   <li className="page-item mx-1">
