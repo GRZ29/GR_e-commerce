@@ -9,25 +9,25 @@ using System.Threading.Tasks;
 
 namespace GR.System.DataAccess.Repositorio
 {
-    public class RepositorioArticulo : Repositorio<Articulos>, IRepositorioArticulo
+    public class ReporsitorioTags : Repositorio<Tags>, IRepositorioTags
     {
-        public RepositorioArticulo(ApplicationDbContext db) : base(db)
+        public ReporsitorioTags(ApplicationDbContext db) : base(db)
         {
             _db = db;
         }
 
         readonly ApplicationDbContext _db;
 
-        public void Actualizar(Articulos articulos)
+        public void Actualizar(Tags tags)
         {
-            var a = _db.Articulos.FirstOrDefault(s => s.Id == articulos.Id);
+            var i = _db.Tags.FirstOrDefault(s => s.Id == tags.Id);
 
-            if (a == null)
+            if (i == null)
+            {
                 return;
+            }
 
-            a.CodArticulo = articulos.CodArticulo;
-            a.NomArticulo = articulos.NomArticulo;
+            i.Tag = tags.Tag;
         }
-
     }
 }

@@ -3,15 +3,11 @@ import Articulos from "./Articulos";
 import Categorias from "./Categorias";
 import { CreateAPIEndPoint, ENDPOINTS } from "../api";
 import Details from "../Details/Details";
-import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import useStateContext, { Context } from "../hooks/useStateContext";
 
 const Shop = () => {
   const [articulos, setArticulos] = useState([]);
-  const { context, setContext } = useStateContext();
-
-  const navigate = useNavigate();
 
   useEffect(() => {
     CreateAPIEndPoint(ENDPOINTS.Articulo)
@@ -22,10 +18,6 @@ const Shop = () => {
       .catch((err) => console.log(err));
   }, []);
 
-  const handleIdSelected = (id) => {
-    setContext({ articuloSelected: id });
-    navigate("/Details");
-  };
 
   return (
     <div>
@@ -79,7 +71,6 @@ const Shop = () => {
                 </div>
               </div>
               <Articulos
-                handleIdSelected={handleIdSelected}
                 articulos={articulos}
               />
               <nav aria-label="Page navigation example">

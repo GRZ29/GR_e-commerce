@@ -1,53 +1,47 @@
 import React, { useEffect, useState } from "react";
-import { useContext } from "react";
 import { BASE_URL, CreateAPIEndPoint, ENDPOINTS } from "../api";
 import product1 from "../assets/img/product-detail-1.jpg";
 import product2 from "../assets/img/product-detail-2.jpg";
 import product3 from "../assets/img/product-detail-3.jpg";
 import product4 from "../assets/img/product-detail-4.jpg";
-import useStateContext, { Context } from "../hooks/useStateContext";
+import RenderFreshData from "../hooks/RenderFreshData";
+import { Context } from "../hooks/Context";
+import { useContext } from "react";
+import AddCar from "../Shop/AddCar";
 
 const Details = () => {
   const [imgArticulo, setImgArticulo] = useState([]);
-  const { context, setContext } = useStateContext();
-
-  let objArticulos = imgArticulo.map((item) => {
-    return {
-      idArticulo: item.idArticulo,
-      nombreArticulo: item.articulos.nomArticulo,
-      precioArticulo: item.articulos.precio.costo,
-      ivaArticulo: item.articulos.precio.iva,
-      descripcionArticulo: (item.articulos.detalles.descripcion = {
-        ancho: item.articulos.detalles.descripcion.ancho,
-        alto: item.articulos.detalles.descripcion.alto,
-        fondo: item.articulos.detalles.descripcion.fondo,
-      }),
-      descripcionAdicionalArticulo:
-        (item.articulos.detalles.descripcionAdicional = {
-          peso: item.articulos.detalles.descripcionAdicional.peso,
-          dimensiones: item.articulos.detalles.descripcionAdicional.dimensiones,
-        }),
-    };
-  });
-
-  let uniqueObjArticulos = objArticulos.reduce((arr, item) => {
-    let found = arr.find((a) => item.idArticulo === a.idArticulo);
-    if (found) {
-      found = { ...item };
-    } else {
-      arr.push(item);
-    }
-    return arr;
-  }, []);
+  const [articulo, setArticulo] = useState([]);
+  const { idProduct, setIdProduct, idCar, setIdCar } = useContext(Context);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    CreateAPIEndPoint(ENDPOINTS.ImgArticulo)
-      .fetchById(context.articuloSelected)
-      .then((res) => {
-        setImgArticulo(res.data);
-      })
-      .catch((err) => console.log(err));
-  }, []);
+    if (idProduct.idSelectProduct == 0) {
+      setIdProduct(RenderFreshData.GetIdSelect(idProduct));
+    } else {
+      CreateAPIEndPoint(ENDPOINTS.ImgArticulo + "/" + idProduct.idSelectProduct)
+        .fetch()
+        .then((res) => {
+          setImgArticulo(res.data);
+        })
+        .catch((err) => console.log(err));
+
+      CreateAPIEndPoint(ENDPOINTS.Articulo + "/" + idProduct.idSelectProduct)
+        .fetch()
+        .then((res) => {
+          setArticulo(res.data);
+          console.log("artiuculos", res.data);
+        })
+        .catch((err) => console.log(err));
+
+      setLoading(true);
+    }
+
+  }, [idProduct]);
+
+  if (!loading == true) {
+    return <div>CARGANDO</div>;
+  }
 
   return (
     <section className="py-5">
@@ -58,153 +52,54 @@ const Details = () => {
             <div className="row m-sm-0">
               <div className="col-sm-2 p-sm-0 order-2 order-sm-1 mt-2 mt-sm-0 px-xl-2">
                 <div className="swiper product-slider-thumbs">
-                  {imgArticulo.map((item) => (
+                  {imgArticulo.map((item, index) => (
                     <div
                       className="swiper-slide h-auto swiper-thumb-item mb-3"
-                      key={item.id}
+                      key={index}
+                      style={{backgroundColor:"white"}}
                     >
                       <div className="swiper-wrapper">
                         <img
-                          className="w-100"
+                          className="w-100 imagen-logo"
                           src={BASE_URL + "resources/" + item.img}
                           alt="..."
+                          
                         />
                       </div>
                     </div>
                   ))}
                 </div>
               </div>
-              <div className="col-sm-10 order-1 order-sm-2">
-                <div className="swiper product-slider">
-                  <div className="swiper-wrapper">
-                    <div className="swiper-slide h-auto">
-                      <a
-                        className="glightbox product-view"
-                        href="img/product-detail-1.jpg"
-                        data-gallery="gallery2"
-                        data-glightbox="Product item 1"
-                      >
-                        <img className="img-fluid" src={product1} alt="..." />
-                      </a>
+              {articulo.map((item, index) => (
+                <div key={index} className="col-sm-10 order-1 order-sm-2">
+                  <div className="swiper product-slider">
+                    <div className="swiper-wrapper">
+                      <div className="swiper-slide h-auto">
+                        <a
+                          className="glightbox product-view"
+                          href="img/product-detail-4.jpg"
+                          data-gallery="gallery2"
+                          data-glightbox="Product item 4"
+                        >
+                          <img
+                            className="img-fluid"
+                            src={
+                              BASE_URL +
+                              "resources/" +
+                              item.imgPreviewArticulos.img
+                            }
+                            alt="..."
+                          />
+                        </a>
+                      </div>
                     </div>
-                    {/* <div className="swiper-slide h-auto">
-                      <a
-                        className="glightbox product-view"
-                        href="img/product-detail-2.jpg"
-                        data-gallery="gallery2"
-                        data-glightbox="Product item 2"
-                      >
-                        <img className="img-fluid" src={product2} alt="..." />
-                      </a>
-                    </div>
-                    <div className="swiper-slide h-auto">
-                      <a
-                        className="glightbox product-view"
-                        href="img/product-detail-3.jpg"
-                        data-gallery="gallery2"
-                        data-glightbox="Product item 3"
-                      >
-                        <img className="img-fluid" src={product3} alt="..." />
-                      </a>
-                    </div>
-                    <div className="swiper-slide h-auto">
-                      <a
-                        className="glightbox product-view"
-                        href="img/product-detail-4.jpg"
-                        data-gallery="gallery2"
-                        data-glightbox="Product item 4"
-                      >
-                        <img className="img-fluid" src={product4} alt="..." />
-                      </a>
-                    </div> */}
                   </div>
                 </div>
-              </div>
+              ))}
             </div>
           </div>
           {/* <!-- PRODUCT DETAILS--> */}
-          {uniqueObjArticulos.map((articulo, idx) => (
-            <div className="col-lg-6" key={articulo.idArticulo}>
-              <ul className="list-inline mb-2 text-sm">
-                <li className="list-inline-item m-0">
-                  <i className="fas fa-star small text-warning"></i>
-                </li>
-                <li className="list-inline-item m-0 1">
-                  <i className="fas fa-star small text-warning"></i>
-                </li>
-                <li className="list-inline-item m-0 2">
-                  <i className="fas fa-star small text-warning"></i>
-                </li>
-                <li className="list-inline-item m-0 3">
-                  <i className="fas fa-star small text-warning"></i>
-                </li>
-                <li className="list-inline-item m-0 4">
-                  <i className="fas fa-star small text-warning"></i>
-                </li>
-              </ul>
-
-              <h1>{articulo.nombreArticulo}</h1>
-              <p className="text-muted lead">${articulo.precioArticulo}</p>
-              <p className="text-sm mb-4">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ut
-                ullamcorper leo, eget euismod orci. Cum sociis natoque penatibus
-                et magnis dis parturient montes nascetur ridiculus mus.
-                Vestibulum ultricies aliquam convallis.
-              </p>
-              <div className="row align-items-stretch mb-4">
-                <div className="col-sm-5 pr-sm-0">
-                  <div className="border d-flex align-items-center justify-content-between py-1 px-3 bg-white border-white">
-                    <span className="small text-uppercase text-gray mr-4 no-select">
-                      Quantity
-                    </span>
-                    <div className="quantity">
-                      <button className="dec-btn p-0">
-                        <i className="fas fa-caret-left"></i>
-                      </button>
-                      <input
-                        className="form-control border-0 shadow-0 p-0"
-                        type="text"
-                      />
-                      <button className="inc-btn p-0">
-                        <i className="fas fa-caret-right"></i>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-sm-3 pl-sm-0">
-                  <a
-                    className="btn btn-dark btn-sm btn-block h-100 d-flex align-items-center justify-content-center px-0"
-                    href="cart.html"
-                  >
-                    Add to cart
-                  </a>
-                </div>
-              </div>
-              <a className="text-dark p-0 mb-4 d-inline-block" href="#!">
-                <i className="far fa-heart me-2"></i>Add to wish list
-              </a>
-              <ul className="list-unstyled small d-inline-block">
-                <li className="px-3 py-2 mb-1 bg-white">
-                  <strong className="text-uppercase">SKU:</strong>
-                  <span className="ms-2 text-muted">039</span>
-                </li>
-                <li className="px-3 py-2 mb-1 bg-white text-muted">
-                  <strong className="text-uppercase text-dark">
-                    Category:
-                  </strong>
-                  <a className="reset-anchor ms-2" href="#!">
-                    Demo Products
-                  </a>
-                </li>
-                <li className="px-3 py-2 mb-1 bg-white text-muted">
-                  <strong className="text-uppercase text-dark">Tags:</strong>
-                  <a className="reset-anchor ms-2" href="#!">
-                    Innovation
-                  </a>
-                </li>
-              </ul>
-            </div>
-          ))}
+          <AddCar articulo={articulo}/> 
         </div>
         {/* <!-- DETAILS TABS--> */}
         <ul className="nav nav-tabs border-0" id="myTab" role="tablist">
@@ -243,7 +138,9 @@ const Details = () => {
             aria-labelledby="description-tab"
           >
             <div className="p-4 p-lg-5 bg-white">
-              <h6 className="text-uppercase">Product description </h6>
+              <h6 className="text-uppercase">
+                Product description {idProduct.idSelecyProduct}
+              </h6>
               <p className="text-muted text-sm mb-0">
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
                 eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut

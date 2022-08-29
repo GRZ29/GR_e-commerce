@@ -24,5 +24,8 @@ namespace GR.System.Models
         [ForeignKey("IdDesAdicional")]
 
         public DescripcionAdicional DescripcionAdicional { get; set; }
+
+        public string DescripcionCorta { get; set; }
+
     }
 }

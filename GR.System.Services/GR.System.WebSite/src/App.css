@@ -1,3 +1,18 @@
+@media (max-width: 576px) {
+  img.w-100.imagen-logo {
+    height: 200px;
+    width: 200px !important;
+  }
+}
+
+.px-3.py-2.mb-1.bg-white {
+  float: left;
+}
+
+.type-info {
+  display: table-caption;
+}
+
 .App {
   text-align: center;
 }

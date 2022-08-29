@@ -1,18 +1,33 @@
 import { Link } from "react-router-dom";
 import React from "react";
 import { BASE_URL } from "../api";
+import { useNavigate } from "react-router-dom";
+import RenderFreshData from "../hooks/RenderFreshData";
+import { Context } from "../hooks/Context";
+import { useContext } from "react";
 
-export default function Articulos({ handleIdSelected, articulos }) {
+const Articulos = ({  articulos }) => {
+
+  const navigate = useNavigate();
+
+  const {idProduct, setIdProduct} = useContext(Context);
+
+  const handleIdSelected = (id) => {
+    RenderFreshData.SetIdSelect(id,idProduct,setIdProduct);
+    navigate("/Details");
+  };
+
+
   return (
     <div className="row">
       {articulos.map((item, idx) => (
-        <div className="col-lg-4 col-sm-6" key={item.id}>
+        <div className="col-lg-4 col-sm-6" key={idx}>
           <div className="product text-center">
             <div className="mb-3 position-relative">
               <div className="badge text-white bg-"></div>
               <a
                 className="d-block"
-                onClick={() => handleIdSelected(articulos[idx].id)}
+                onClick={() => handleIdSelected(item.id)}
               >
                 <img
                   className="img-fluid w-100"
@@ -48,3 +63,5 @@ export default function Articulos({ handleIdSelected, articulos }) {
     </div>
   );
 }
+
+export default Articulos;

@@ -28,5 +28,7 @@ namespace GR.System.DataAccess.Data
         public DbSet<ImgArticulos> ImgArticulos { get; set; }
         public DbSet<ImgCategorias> ImgCategorias { get; set; }
         public DbSet<ImgPreviewArticulos> ImgPreviewArticulos { get; set; }
+        public DbSet<Tags> Tags { get; set; }
+        public DbSet<Busqueda> Busqueda { get; set; }
     }
 }

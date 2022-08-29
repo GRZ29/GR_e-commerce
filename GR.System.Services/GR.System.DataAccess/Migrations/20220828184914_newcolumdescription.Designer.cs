@@ -4,14 +4,16 @@ using GR.System.DataAccess.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace GR.System.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220828184914_newcolumdescription")]
+    partial class newcolumdescription
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -25,9 +27,6 @@ namespace GR.System.DataAccess.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .UseIdentityColumn();
-
-                    b.Property<string>("CodArticulo")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("IdCategoria")
                         .HasColumnType("int");
@@ -55,26 +54,6 @@ namespace GR.System.DataAccess.Migrations
                     b.HasIndex("IdPrecio");
 
                     b.ToTable("Articulos");
-                });
-
-            modelBuilder.Entity("GR.System.Models.Busqueda", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<string>("Buscador")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("IdArticulo")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("IdArticulo");
-
-                    b.ToTable("Busqueda");
                 });
 
             modelBuilder.Entity("GR.System.Models.Categorias", b =>
@@ -121,9 +100,6 @@ namespace GR.System.DataAccess.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Ancho")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("DescripcionLarga")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Fondo")
@@ -266,26 +242,6 @@ namespace GR.System.DataAccess.Migrations
                     b.HasIndex("IdArticulo");
 
                     b.ToTable("Stock");
-                });
-
-            modelBuilder.Entity("GR.System.Models.Tags", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<int>("IdArticulo")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Tag")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("IdArticulo");
-
-                    b.ToTable("Tags");
                 });
 
             modelBuilder.Entity("GR.System.Models.TipColores", b =>
@@ -541,17 +497,6 @@ namespace GR.System.DataAccess.Migrations
                     b.Navigation("Precio");
                 });
 
-            modelBuilder.Entity("GR.System.Models.Busqueda", b =>
-                {
-                    b.HasOne("GR.System.Models.Articulos", "Articulos")
-                        .WithMany()
-                        .HasForeignKey("IdArticulo")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Articulos");
-                });
-
             modelBuilder.Entity("GR.System.Models.Detalles", b =>
                 {
                     b.HasOne("GR.System.Models.DescripcionAdicional", "DescripcionAdicional")
@@ -583,17 +528,6 @@ namespace GR.System.DataAccess.Migrations
                 });
 
             modelBuilder.Entity("GR.System.Models.Stock", b =>
-                {
-                    b.HasOne("GR.System.Models.Articulos", "Articulos")
-                        .WithMany()
-                        .HasForeignKey("IdArticulo")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Articulos");
-                });
-
-            modelBuilder.Entity("GR.System.Models.Tags", b =>
                 {
                     b.HasOne("GR.System.Models.Articulos", "Articulos")
                         .WithMany()

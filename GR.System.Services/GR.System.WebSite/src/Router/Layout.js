@@ -7,7 +7,7 @@ const Layout = () => {
       <div className="container px-lg-3">
         <nav className="navbar navbar-expand-lg navbar-light py-3 px-lg-0">
           <a className="navbar-brand" href="index.html">
-            <span className="fw-bold text-uppercase text-dark">Boutique</span>
+            <span className="fw-bold text-uppercase text-dark">FM HIDALGO</span>
           </a>
           <button
             className="navbar-toggler navbar-toggler-end"
@@ -23,18 +23,13 @@ const Layout = () => {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto">
               <li className="nav-item">
-                <Link className="nav-link active" to="/">
+                <Link className="nav-link" to="/">
                   Home
                 </Link>{" "}
               </li>
               <li className="nav-item">
                 <Link className="nav-link" to="/Shop">
-                  Shop
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/Details">
-                  Product detail
+                  Tienda
                 </Link>
               </li>
             </ul>
@@ -47,17 +42,6 @@ const Layout = () => {
                   </Link>
                   <small className="text-gray fw-normal">(2)</small>
                 </div>
-              </li>
-              <li className="nav-item">
-                <span className="nav-link">
-                  <i className="far fa-heart me-1"></i>
-                  <small className="text-gray fw-normal"> (0)</small>
-                </span>
-              </li>
-              <li className="nav-item">
-                <span className="nav-link">
-                  <i className="fas fa-user me-1 text-gray fw-normal"></i>Login
-                </span>
               </li>
             </ul>
           </div>

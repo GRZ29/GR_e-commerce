@@ -25,6 +25,7 @@ namespace GR.System.DataAccess.Repositorio
             if (d == null)
                 return;
 
+            d.DescripcionLarga = descripcion.DescripcionLarga;
             d.Alto = descripcion.Alto;
             d.Ancho = descripcion.Ancho;
             d.Fondo = descripcion.Fondo;

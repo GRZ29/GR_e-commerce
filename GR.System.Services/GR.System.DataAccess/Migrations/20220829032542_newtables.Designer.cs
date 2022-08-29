@@ -4,14 +4,16 @@ using GR.System.DataAccess.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace GR.System.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220829032542_newtables")]
+    partial class newtables
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -67,7 +69,7 @@ namespace GR.System.DataAccess.Migrations
                     b.Property<string>("Buscador")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("IdArticulo")
+                    b.Property<int?>("IdArticulo")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -121,9 +123,6 @@ namespace GR.System.DataAccess.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Ancho")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("DescripcionLarga")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Fondo")
@@ -275,7 +274,7 @@ namespace GR.System.DataAccess.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
-                    b.Property<int>("IdArticulo")
+                    b.Property<int?>("IdArticulo")
                         .HasColumnType("int");
 
                     b.Property<string>("Tag")
@@ -545,9 +544,7 @@ namespace GR.System.DataAccess.Migrations
                 {
                     b.HasOne("GR.System.Models.Articulos", "Articulos")
                         .WithMany()
-                        .HasForeignKey("IdArticulo")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("IdArticulo");
 
                     b.Navigation("Articulos");
                 });
@@ -597,9 +594,7 @@ namespace GR.System.DataAccess.Migrations
                 {
                     b.HasOne("GR.System.Models.Articulos", "Articulos")
                         .WithMany()
-                        .HasForeignKey("IdArticulo")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("IdArticulo");
 
                     b.Navigation("Articulos");
                 });

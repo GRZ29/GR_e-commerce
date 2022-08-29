@@ -1,23 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace GR.System.Models
 {
-    public class Descripcion
+    public class Busqueda
     {
         [Key]
         public int Id { get; set; }
 
-        public string DescripcionLarga { get; set; }
+        public string Buscador { get; set; }
 
-        public string Ancho { get; set; }
+        public int IdArticulo { get; set; }
 
-        public string Alto { get; set; }
-
-        public string Fondo { get; set; }
+        [ForeignKey("IdArticulo")]
+        public Articulos Articulos { get; set; }
     }
 }

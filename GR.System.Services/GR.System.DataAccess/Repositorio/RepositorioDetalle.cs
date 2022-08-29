@@ -26,6 +26,7 @@ namespace GR.System.DataAccess.Repositorio
                 if (c == null)
                     return;
 
+                c.DescripcionCorta = detalles.DescripcionCorta;
                 c.DescripcionAdicional= detalles.DescripcionAdicional;
                 c.Descripcion= detalles.Descripcion;
         }

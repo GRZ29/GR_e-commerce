@@ -42,5 +42,19 @@ namespace GR.System.Services.Controllers
             return new JsonResult(new { success = true, data = result });
 
         }
+
+        [HttpGet("{id}")]
+        public IActionResult GetArticulosId(int id = 0)
+        {
+            if (id == 0)
+                return new JsonResult(new { Error = "Tienes que buscar un id" });
+
+            var result = _context.Articulos.Where(x => x.Id == id);
+
+            if (result.Count() == 0)
+                return new JsonResult(new { Error = "Error vacio" }); ;
+
+            return new JsonResult(result.Include(x=>x.Categorias).Include(x => x.Precio).Include(x => x.Detalles.Descripcion).Include(x => x.Detalles.DescripcionAdicional).Include(x => x.ImgPreviewArticulos).Include(x => x.Categorias));
+        }
     }
 }

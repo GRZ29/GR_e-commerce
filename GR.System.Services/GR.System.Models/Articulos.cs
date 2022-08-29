@@ -23,6 +23,8 @@ namespace GR.System.Models
 
         public string NomArticulo { get; set; }
 
+        public string CodArticulo { get; set; }
+
         [ForeignKey("IdCategoria")]
         public Categorias Categorias { get; set; }
 
