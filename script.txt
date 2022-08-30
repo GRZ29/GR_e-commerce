@@ -1,0 +1,130 @@
+USE [GR_DB]
+GO
+SET IDENTITY_INSERT [dbo].[Categorias] ON 
+GO
+INSERT [dbo].[Categorias] ([Id], [NomCategoria]) VALUES (1, N'Cocina')
+GO
+INSERT [dbo].[Categorias] ([Id], [NomCategoria]) VALUES (2, N'Dormitorios')
+GO
+INSERT [dbo].[Categorias] ([Id], [NomCategoria]) VALUES (3, N'Sala')
+GO
+INSERT [dbo].[Categorias] ([Id], [NomCategoria]) VALUES (4, N'Otros')
+GO
+INSERT [dbo].[Categorias] ([Id], [NomCategoria]) VALUES (5, N'Baños')
+GO
+SET IDENTITY_INSERT [dbo].[Categorias] OFF
+GO
+SET IDENTITY_INSERT [dbo].[SubCategorias] ON 
+GO
+INSERT [dbo].[SubCategorias] ([Id], [NomSubCategoria], [IdCategoria]) VALUES (1, N'Mesa Cocina 05', 1)
+GO
+INSERT [dbo].[SubCategorias] ([Id], [NomSubCategoria], [IdCategoria]) VALUES (2, N'Mueble Cocina', 1)
+GO
+INSERT [dbo].[SubCategorias] ([Id], [NomSubCategoria], [IdCategoria]) VALUES (3, N'Cama para niños', 2)
+GO
+INSERT [dbo].[SubCategorias] ([Id], [NomSubCategoria], [IdCategoria]) VALUES (4, N'Cama para adultos', 2)
+GO
+INSERT [dbo].[SubCategorias] ([Id], [NomSubCategoria], [IdCategoria]) VALUES (5, N'Sala grande', 3)
+GO
+INSERT [dbo].[SubCategorias] ([Id], [NomSubCategoria], [IdCategoria]) VALUES (6, N'Sala Diferente', 3)
+GO
+INSERT [dbo].[SubCategorias] ([Id], [NomSubCategoria], [IdCategoria]) VALUES (7, N'Otros 01', 4)
+GO
+INSERT [dbo].[SubCategorias] ([Id], [NomSubCategoria], [IdCategoria]) VALUES (8, N'Otros 03', 4)
+GO
+INSERT [dbo].[SubCategorias] ([Id], [NomSubCategoria], [IdCategoria]) VALUES (9, N'Baño Stufa', 5)
+GO
+INSERT [dbo].[SubCategorias] ([Id], [NomSubCategoria], [IdCategoria]) VALUES (10, N'Baño Personal', 5)
+GO
+INSERT [dbo].[SubCategorias] ([Id], [NomSubCategoria], [IdCategoria]) VALUES (11, N'Sala pequeña', 3)
+GO
+INSERT [dbo].[SubCategorias] ([Id], [NomSubCategoria], [IdCategoria]) VALUES (12, N'Otros 02', 4)
+GO
+INSERT [dbo].[SubCategorias] ([Id], [NomSubCategoria], [IdCategoria]) VALUES (13, N'Baño Inodoro', 5)
+GO
+SET IDENTITY_INSERT [dbo].[SubCategorias] OFF
+GO
+SET IDENTITY_INSERT [dbo].[Precio] ON 
+GO
+INSERT [dbo].[Precio] ([Id], [Iva], [Costo]) VALUES (1, CAST(1.0000 AS Decimal(18, 4)), 17000)
+GO
+SET IDENTITY_INSERT [dbo].[Precio] OFF
+GO
+SET IDENTITY_INSERT [dbo].[Descripcion] ON 
+GO
+INSERT [dbo].[Descripcion] ([Id], [Ancho], [Alto], [Fondo], [DescripcionLarga]) VALUES (1, N'2x2', N'2x2', N'2x2', NULL)
+GO
+SET IDENTITY_INSERT [dbo].[Descripcion] OFF
+GO
+SET IDENTITY_INSERT [dbo].[DescripcionAdicional] ON 
+GO
+INSERT [dbo].[DescripcionAdicional] ([Id], [Peso], [Dimensiones]) VALUES (1, N'25kg', N'4x4x4')
+GO
+SET IDENTITY_INSERT [dbo].[DescripcionAdicional] OFF
+GO
+SET IDENTITY_INSERT [dbo].[Detalles] ON 
+GO
+INSERT [dbo].[Detalles] ([Id], [IdDesc], [IdDesAdicional], [DescripcionCorta]) VALUES (1, 1, 1, N'Mueble estilo gavetero, 4 gavetas, riles estilo telescopicos. En melamina color blanco o wengue')
+GO
+SET IDENTITY_INSERT [dbo].[Detalles] OFF
+GO
+SET IDENTITY_INSERT [dbo].[ImgPreviewArticulos] ON 
+GO
+INSERT [dbo].[ImgPreviewArticulos] ([Id], [Img]) VALUES (1, N'BAR-2202.jpeg')
+GO
+INSERT [dbo].[ImgPreviewArticulos] ([Id], [Img]) VALUES (2, N'EST-2207.jpeg')
+GO
+INSERT [dbo].[ImgPreviewArticulos] ([Id], [Img]) VALUES (3, N'VEL-2203.jpeg')
+GO
+INSERT [dbo].[ImgPreviewArticulos] ([Id], [Img]) VALUES (4, N'ET-2203.jpeg')
+GO
+SET IDENTITY_INSERT [dbo].[ImgPreviewArticulos] OFF
+GO
+SET IDENTITY_INSERT [dbo].[Articulos] ON 
+GO
+INSERT [dbo].[Articulos] ([Id], [IdSubCategoria], [IdPrecio], [IdDetalle], [NomArticulo], [IdImgPreviewArticulo], [CodArticulo]) VALUES (4, 2, 1, 1, N'Estante Vinos', 1, N'BAR-2202')
+GO
+INSERT [dbo].[Articulos] ([Id], [IdSubCategoria], [IdPrecio], [IdDetalle], [NomArticulo], [IdImgPreviewArticulo], [CodArticulo]) VALUES (5, 1, 1, 1, N'Estante cocina', 2, N'EST-2207')
+GO
+INSERT [dbo].[Articulos] ([Id], [IdSubCategoria], [IdPrecio], [IdDetalle], [NomArticulo], [IdImgPreviewArticulo], [CodArticulo]) VALUES (8, 3, 1, 1, N'Estante Cuarto', 4, N'ET-2203')
+GO
+INSERT [dbo].[Articulos] ([Id], [IdSubCategoria], [IdPrecio], [IdDetalle], [NomArticulo], [IdImgPreviewArticulo], [CodArticulo]) VALUES (9, 5, 1, 1, N'Mesa de noche', 3, N'VEL-2203')
+GO
+SET IDENTITY_INSERT [dbo].[Articulos] OFF
+GO
+SET IDENTITY_INSERT [dbo].[ImgArticulos] ON 
+GO
+INSERT [dbo].[ImgArticulos] ([Id], [IdArticulo], [Img]) VALUES (1, 4, N'LOGO.png')
+GO
+INSERT [dbo].[ImgArticulos] ([Id], [IdArticulo], [Img]) VALUES (2, 5, N'LOGO.png')
+GO
+INSERT [dbo].[ImgArticulos] ([Id], [IdArticulo], [Img]) VALUES (3, 8, N'LOGO.png')
+GO
+INSERT [dbo].[ImgArticulos] ([Id], [IdArticulo], [Img]) VALUES (4, 9, N'LOGO.png')
+GO
+SET IDENTITY_INSERT [dbo].[ImgArticulos] OFF
+GO
+INSERT [dbo].[__EFMigrationsHistory] ([MigrationId], [ProductVersion]) VALUES (N'20220723060850_first-migration', N'5.0.0')
+GO
+INSERT [dbo].[__EFMigrationsHistory] ([MigrationId], [ProductVersion]) VALUES (N'20220724180602_TablesToDb', N'5.0.0')
+GO
+INSERT [dbo].[__EFMigrationsHistory] ([MigrationId], [ProductVersion]) VALUES (N'20220730040224_UpdateTablePrecio', N'5.0.0')
+GO
+INSERT [dbo].[__EFMigrationsHistory] ([MigrationId], [ProductVersion]) VALUES (N'20220731032353_StoreProcedure', N'5.0.0')
+GO
+INSERT [dbo].[__EFMigrationsHistory] ([MigrationId], [ProductVersion]) VALUES (N'20220814184859_ImgArticulos Added', N'5.0.0')
+GO
+INSERT [dbo].[__EFMigrationsHistory] ([MigrationId], [ProductVersion]) VALUES (N'20220815073403_newtable', N'5.0.0')
+GO
+INSERT [dbo].[__EFMigrationsHistory] ([MigrationId], [ProductVersion]) VALUES (N'20220815074954_newcolum', N'5.0.0')
+GO
+INSERT [dbo].[__EFMigrationsHistory] ([MigrationId], [ProductVersion]) VALUES (N'20220819035450_ImgPreviewArticulosToDb', N'5.0.0')
+GO
+INSERT [dbo].[__EFMigrationsHistory] ([MigrationId], [ProductVersion]) VALUES (N'20220828184914_newcolumdescription', N'5.0.0')
+GO
+INSERT [dbo].[__EFMigrationsHistory] ([MigrationId], [ProductVersion]) VALUES (N'20220829032542_newtables', N'5.0.0')
+GO
+INSERT [dbo].[__EFMigrationsHistory] ([MigrationId], [ProductVersion]) VALUES (N'20220829041114_fixbugs', N'5.0.0')
+GO
+INSERT [dbo].[__EFMigrationsHistory] ([MigrationId], [ProductVersion]) VALUES (N'20220830015248_SubCategoriasToDb', N'5.0.0')
+GO
