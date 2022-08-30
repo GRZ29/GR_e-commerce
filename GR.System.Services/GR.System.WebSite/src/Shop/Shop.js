@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Articulos from "./Articulos";
 import Categorias from "./Categorias";
 import { CreateAPIEndPoint, ENDPOINTS } from "../api";
-import Details from "../Details/Details";
+import Details from "./Details";
 import { useContext } from "react";
 import useStateContext, { Context } from "../hooks/useStateContext";
 
@@ -17,7 +17,6 @@ const Shop = () => {
       })
       .catch((err) => console.log(err));
   }, []);
-
 
   return (
     <div>
@@ -45,7 +44,7 @@ const Shop = () => {
       <section className="py-5">
         <div className="container p-0">
           <div className="row">
-            <Categorias />
+            <Categorias articulos={articulos} />
             <div className="col-lg-9 order-1 order-lg-2 mb-5 mb-lg-0">
               <div className="row mb-3 align-items-center">
                 <div className="col-lg-6 mb-2 mb-lg-0">
@@ -70,9 +69,7 @@ const Shop = () => {
                   </ul>
                 </div>
               </div>
-              <Articulos
-                articulos={articulos}
-              />
+              <Articulos articulos={articulos} />
               <nav aria-label="Page navigation example">
                 <ul className="pagination justify-content-center justify-content-lg-end">
                   <li className="page-item mx-1">

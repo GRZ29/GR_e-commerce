@@ -22,7 +22,7 @@ namespace GR.System.Services.Controllers
             _unidadTrabajo = unidadTrabajo;
         }
         [HttpGet]
-        public IActionResult GetImgCategorias()
+        public IActionResult GetCategorias()
         {
             var result = _unidadTrabajo.ImgCategorias.Listar();
 

@@ -13,7 +13,7 @@ namespace GR.System.Models
         [Key]
         public int Id { get; set; }
 
-        public int IdCategoria { get; set; }
+        public int IdSubCategoria { get; set; }
 
         public int IdPrecio { get; set; }
 
@@ -25,8 +25,8 @@ namespace GR.System.Models
 
         public string CodArticulo { get; set; }
 
-        [ForeignKey("IdCategoria")]
-        public Categorias Categorias { get; set; }
+        [ForeignKey("IdSubCategoria")]
+        public SubCategorias SubCategorias { get; set; }
 
         [ForeignKey("IdPrecio")]
         public Precio Precio { get; set; }

@@ -37,7 +37,7 @@ namespace GR.System.Services.Controllers
             //                               .Where(c => c.Categorias.NomCategoria == "ESCRITORIO")
                         
             //get information by repository
-            var result = _unidadTrabajo.Articulo.Listar(propiedades: "Categorias,Precio,Detalles.Descripcion,Detalles.DescripcionAdicional,ImgPreviewArticulos");
+            var result = _unidadTrabajo.Articulo.Listar(propiedades: "SubCategorias.Categorias,Precio,Detalles.Descripcion,Detalles.DescripcionAdicional,ImgPreviewArticulos");
 
             return new JsonResult(new { success = true, data = result });
 
@@ -54,7 +54,7 @@ namespace GR.System.Services.Controllers
             if (result.Count() == 0)
                 return new JsonResult(new { Error = "Error vacio" }); ;
 
-            return new JsonResult(result.Include(x=>x.Categorias).Include(x => x.Precio).Include(x => x.Detalles.Descripcion).Include(x => x.Detalles.DescripcionAdicional).Include(x => x.ImgPreviewArticulos).Include(x => x.Categorias));
+            return new JsonResult(result.Include(x=> x.SubCategorias.Categorias).Include(x => x.Precio).Include(x => x.Detalles.Descripcion).Include(x => x.Detalles.DescripcionAdicional).Include(x => x.ImgPreviewArticulos));
         }
     }
 }

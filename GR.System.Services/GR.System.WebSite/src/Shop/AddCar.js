@@ -73,7 +73,7 @@ const AddCar = ({ articulo }) => {
         <div className="px-3 py-2 mb-1 bg-white text-muted">
           <strong className="text-uppercase text-dark">Category:</strong>
           <a className="reset-anchor ms-2" href="#!">
-            {articulo[0].categorias.nomCategoria}
+            {articulo[0].subCategorias.categorias.nomCategoria}
           </a>
         </div>
         <div className="px-3 py-2 mb-1 bg-white text-muted">

@@ -26,7 +26,7 @@ namespace GR.System.Services.Controllers
         [HttpGet]
         public IActionResult GetImgArticulos()
         {
-            var result = _unidadTrabajo.ImgArticulo.Listar(propiedades: "Articulos.Categorias");
+            var result = _unidadTrabajo.ImgArticulo.Listar(propiedades: "Articulos.SubCategorias.Categorias");
 
             return Ok(result);
 
@@ -43,7 +43,7 @@ namespace GR.System.Services.Controllers
             if (result.Count() == 0)
                 return new JsonResult(new { Error = "Error vacio" }); ;
 
-            return new JsonResult(result.Include(x => x.Articulos.Precio).Include(x => x.Articulos.Detalles.Descripcion).Include(x => x.Articulos.Detalles.DescripcionAdicional));
+            return new JsonResult(result.Include(x => x.Articulos.SubCategorias.Categorias).Include(x => x.Articulos.Precio).Include(x => x.Articulos.Detalles.Descripcion).Include(x => x.Articulos.Detalles.DescripcionAdicional));
         }
 
         //[HttpGet]
