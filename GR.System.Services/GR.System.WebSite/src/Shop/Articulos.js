@@ -6,17 +6,15 @@ import RenderFreshData from "../hooks/RenderFreshData";
 import { Context } from "../hooks/Context";
 import { useContext } from "react";
 
-const Articulos = ({  articulos }) => {
-
+const Articulos = ({ articulos }) => {
   const navigate = useNavigate();
 
-  const {idProduct, setIdProduct} = useContext(Context);
+  const { idProduct, setIdProduct } = useContext(Context);
 
   const handleIdSelected = (id) => {
-    RenderFreshData.SetIdSelect(id,idProduct,setIdProduct);
+    RenderFreshData.SetIdSelect(id, idProduct, setIdProduct);
     navigate("/Details");
   };
-
 
   return (
     <div className="row">
@@ -25,10 +23,7 @@ const Articulos = ({  articulos }) => {
           <div className="product text-center">
             <div className="mb-3 position-relative">
               <div className="badge text-white bg-"></div>
-              <a
-                className="d-block"
-                onClick={() => handleIdSelected(item.id)}
-              >
+              <a className="d-block" onClick={() => handleIdSelected(item.id)}>
                 <img
                   className="img-fluid w-100"
                   src={BASE_URL + "resources/" + item.imgPreviewArticulos.img}
@@ -62,6 +57,6 @@ const Articulos = ({  articulos }) => {
       ))}
     </div>
   );
-}
+};
 
 export default Articulos;

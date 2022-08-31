@@ -24,6 +24,8 @@ namespace GR.System.DataAccess.Repositorio.IRepositorio
 
         IRepositorioImgCategorias ImgCategorias { get; }
 
+        IRepositorioSubCategoria SubCategoria { get; }
+
         void Guardar();
     }
 }

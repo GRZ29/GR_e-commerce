@@ -1,5 +1,6 @@
 ﻿using GR.System.DataAccess.Data;
 using GR.System.DataAccess.Repositorio.IRepositorio;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -10,24 +11,22 @@ namespace GR.System.Services.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CategoriasController : Controller
+    public class SubCategoriasController : ControllerBase
     {
-
         private readonly ApplicationDbContext _context;
         readonly IUnidadTrabajo _unidadTrabajo;
 
-        public CategoriasController(ApplicationDbContext context, IUnidadTrabajo unidadTrabajo)
+        public SubCategoriasController(ApplicationDbContext context, IUnidadTrabajo unidadTrabajo)
         {
             _context = context;
             _unidadTrabajo = unidadTrabajo;
         }
         [HttpGet]
-        public IActionResult GetCategorias()
+        public IActionResult GetSubCategorias()
         {
-            var result = _unidadTrabajo.Categoria.Listar();
+            var result = _unidadTrabajo.SubCategoria.Listar(propiedades: "Categorias");
 
             return Ok(result);
         }
-
     }
 }

@@ -2,21 +2,52 @@ import React, { useState, useEffect } from "react";
 import Articulos from "./Articulos";
 import Categorias from "./Categorias";
 import { CreateAPIEndPoint, ENDPOINTS } from "../api";
-import Details from "./Details";
-import { useContext } from "react";
 import useStateContext, { Context } from "../hooks/useStateContext";
 
 const Shop = () => {
   const [articulos, setArticulos] = useState([]);
+  const [filter, setFilter] = useState([]);
 
   useEffect(() => {
+    fetchArticulos();
+  }, []);
+
+  const fetchArticulos = () => {
     CreateAPIEndPoint(ENDPOINTS.Articulo)
       .fetch()
       .then((res) => {
         setArticulos(res.data.data);
+        // instancie un nuevo useState, con la misma informacion de articulos
+        // con el fin de que la informacion de todos los articulos siempre se mantega intacta
+        // y no se vea afectada por el filtro de categorias y subcategorias
+        setFilter(res.data.data);
       })
       .catch((err) => console.log(err));
-  }, []);
+  };
+
+  const handleFilterCategorias = (nomCategoria) => {
+    let categoriasFilter = filter.filter((articulo) => {
+      return articulo.subCategorias.categorias.nomCategoria === nomCategoria;
+    });
+
+    if (categoriasFilter.length === 0) {
+      alert("no existen articulos en esta Categoria");
+    }
+
+    setArticulos(categoriasFilter);
+  };
+
+  const handleFilterSubCategorias = (subNomCategoria) => {
+    let subCategoriasFilter = filter.filter((articulo) => {
+      return articulo.subCategorias.nomSubCategoria === subNomCategoria;
+    });
+
+    console.log(subCategoriasFilter);
+    if (subCategoriasFilter.length === 0) {
+      alert("no existen articulos en esta SubCategoria");
+    }
+    setArticulos(subCategoriasFilter);
+  };
 
   return (
     <div>
@@ -44,7 +75,11 @@ const Shop = () => {
       <section className="py-5">
         <div className="container p-0">
           <div className="row">
-            <Categorias articulos={articulos} />
+            <Categorias
+              articulos={articulos}
+              handleFilterCategorias={handleFilterCategorias}
+              handleFilterSubCategorias={handleFilterSubCategorias}
+            />
             <div className="col-lg-9 order-1 order-lg-2 mb-5 mb-lg-0">
               <div className="row mb-3 align-items-center">
                 <div className="col-lg-6 mb-2 mb-lg-0">
