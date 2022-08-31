@@ -17,24 +17,25 @@ const Shop = () => {
       .fetch()
       .then((res) => {
         setArticulos(res.data.data);
-        // instancie un nuevo useState, con la misma informacion de articulos
-        // con el fin de que la informacion de todos los articulos siempre se mantega intacta
-        // y no se vea afectada por el filtro de categorias y subcategorias
         setFilter(res.data.data);
       })
       .catch((err) => console.log(err));
   };
 
   const handleFilterCategorias = (nomCategoria) => {
-    let categoriasFilter = filter.filter((articulo) => {
-      return articulo.subCategorias.categorias.nomCategoria === nomCategoria;
-    });
+    if (nomCategoria === "todos") {
+      fetchArticulos();
+    } else {
+      let categoriasFilter = filter.filter((articulo) => {
+        return articulo.subCategorias.categorias.nomCategoria === nomCategoria;
+      });
 
-    if (categoriasFilter.length === 0) {
-      alert("no existen articulos en esta Categoria");
+      if (categoriasFilter.length === 0) {
+        alert("no existen articulos en esta Categoria");
+      }
+
+      setArticulos(categoriasFilter);
     }
-
-    setArticulos(categoriasFilter);
   };
 
   const handleFilterSubCategorias = (subNomCategoria) => {
@@ -42,10 +43,10 @@ const Shop = () => {
       return articulo.subCategorias.nomSubCategoria === subNomCategoria;
     });
 
-    console.log(subCategoriasFilter);
     if (subCategoriasFilter.length === 0) {
       alert("no existen articulos en esta SubCategoria");
     }
+
     setArticulos(subCategoriasFilter);
   };
 

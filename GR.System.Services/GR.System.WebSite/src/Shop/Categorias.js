@@ -12,7 +12,9 @@ export default function Categorias({
   const fetchCategorias = () => {
     CreateAPIEndPoint(ENDPOINTS.Categorias)
       .fetch()
-      .then((res) => setCategorias(res.data))
+      .then((res) => {
+        setCategorias(res.data);
+      })
       .catch((error) => console.log(error));
   };
 
@@ -31,6 +33,15 @@ export default function Categorias({
   return (
     <div className="col-lg-3 order-2 order-lg-1">
       <h5 className="text-uppercase mb-4">Categories</h5>
+      <div
+        className="py-2 px-4 bg-dark text-white mb-3"
+        style={{ cursor: "pointer" }}
+        onClick={() => handleFilterCategorias("todos")}
+      >
+        <strong className="small text-uppercase fw-bold">
+          todos los articulos
+        </strong>
+      </div>
       {categorias.map((categoria, indexCategoria) => (
         <div key={indexCategoria}>
           <div
