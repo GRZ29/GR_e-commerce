@@ -1,14 +1,18 @@
 import React, { useEffect, useState } from "react";
 import product from "../assets/img/product-5-alt-1.jpg";
-import hero from "../assets/img/hero-banner-alt.jpg";
-import categorie1 from "../assets/img/cat-img-1.jpg";
-import categorie2 from "../assets/img/cat-img-2.jpg";
-import categorie3 from "../assets/img/cat-img-3.jpg";
-import categorie4 from "../assets/img/cat-img-4.jpg";
-
+import hero from "../assets/img/landing-logo.jpg";
+import categoriaBed from "../assets/img/bed-categoria.jpg";
+import categorieSala from "../assets/img/sala-categoria.jpg";
+import categorieCocina from "../assets/img/cocina-categoria.jpg";
+import categorieBano from "../assets/img/bano-categoria.jpg";
 import { BASE_URL, CreateAPIEndPoint, ENDPOINTS } from "../api";
+import { useNavigate } from "react-router-dom";
+import Carousel from "../Slider/Carousel";
 
 const Home = () => {
+  
+  const navigate = useNavigate();
+
   const [imgArticulo, setImgArticulo] = useState([]);
 
   const getInfo = () => {
@@ -16,8 +20,6 @@ const Home = () => {
       .fetch()
       .then((res) => {
         setImgArticulo(res.data);
-        console.log(res.data[0].img);
-        console.log(imgArticulo);
       })
       .catch((err) => console.log(err));
   };
@@ -125,56 +127,169 @@ const Home = () => {
       </div>
 
       <div className="container">
-        <section
-          className="hero pb-3 bg-cover bg-center d-flex align-items-center"
-          style={{ background: `url(${hero})` }}
+        <div
+          id="carouselExampleDark"
+          className="carousel carousel-dark slide"
+          data-bs-ride="carousel"
         >
-          {/* <img src={product}></img> */}
-          <div className="container py-5">
-            <div className="row px-4 px-lg-5">
-              <div className="col-lg-6">
-                <p className="text-muted small text-uppercase mb-2">
-                  New Inspiration 2020
-                </p>
-                <h1 className="h2 text-uppercase mb-3">
-                  20% off on new season
-                </h1>
-                <a className="btn btn-dark" href="shop.html">
-                  Browse collections
-                </a>
-              </div>
+          <div className="carousel-indicators">
+            <button
+              type="button"
+              data-bs-target="#carouselExampleDark"
+              data-bs-slide-to="0"
+              className="active"
+              aria-current="true"
+              aria-label="Slide 1"
+            ></button>
+            <button
+              type="button"
+              data-bs-target="#carouselExampleDark"
+              data-bs-slide-to="1"
+              aria-label="Slide 2"
+            ></button>
+            <button
+              type="button"
+              data-bs-target="#carouselExampleDark"
+              data-bs-slide-to="2"
+              aria-label="Slide 3"
+            ></button>
+          </div>
+          <div className="carousel-inner">
+            <div className="carousel-item active" data-bs-interval="5000">
+              <section
+                className="hero pb-3 bg-cover bg-center d-flex align-items-center"
+                style={{ background: `url(${hero})` }}
+              >
+                {/* <img src={product}></img> */}
+                <div className="container py-5">
+                  <div className="row px-4 px-lg-5">
+                    <div className="col-lg-6">
+                      <p className="text-muted small text-uppercase mb-2">
+                        Bienvenidos
+                      </p>
+                      <h1 className="h2 text-uppercase mb-3">
+                        20% en nuestras 200 primeras compras
+                      </h1>
+                      <a
+                        className="btn btn-dark"
+                        onClick={() => navigate("/Shop")}
+                      >
+                        Vamos!
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </div>
+            <div className="carousel-item" data-bs-interval="5000">
+              <section
+                className="hero pb-3 bg-cover bg-center d-flex align-items-center"
+                style={{ background: `url(${hero})` }}
+              >
+                {/* <img src={product}></img> */}
+                <div className="container py-5">
+                  <div className="row px-4 px-lg-5">
+                    <div className="col-lg-6">
+                      <p className="text-muted small text-uppercase mb-2">
+                        Bienvenidos
+                      </p>
+                      <h1 className="h2 text-uppercase mb-3">
+                        20% en nuestras 200 primeras compras
+                      </h1>
+                      <a
+                        className="btn btn-dark"
+                        onClick={() => navigate("/Shop")}
+                      >
+                        Vamos!
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </div>
+            <div className="carousel-item" data-bs-interval="5000">
+              <section
+                className="hero pb-3 bg-cover bg-center d-flex align-items-center"
+                style={{ background: `url(${hero})` }}
+              >
+                {/* <img src={product}></img> */}
+                <div className="container py-5">
+                  <div className="row px-4 px-lg-5">
+                    <div className="col-lg-6">
+                      <p className="text-muted small text-uppercase mb-2">
+                        Bienvenidos
+                      </p>
+                      <h1 className="h2 text-uppercase mb-3">
+                        20% en nuestras 200 primeras compras
+                      </h1>
+                      <a
+                        className="btn btn-dark"
+                        onClick={() => navigate("/Shop")}
+                      >
+                        Vamos!
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </section>
             </div>
           </div>
-        </section>
+          <button
+            className="carousel-control-prev"
+            type="button"
+            data-bs-target="#carouselExampleDark"
+            data-bs-slide="prev"
+          >
+            <span
+              className="carousel-control-prev-icon"
+              aria-hidden="true"
+            ></span>
+            <span className="visually-hidden">Previous</span>
+          </button>
+          <button
+            className="carousel-control-next"
+            type="button"
+            data-bs-target="#carouselExampleDark"
+            data-bs-slide="next"
+          >
+            <span
+              className="carousel-control-next-icon"
+              aria-hidden="true"
+            ></span>
+            <span className="visually-hidden">Next</span>
+          </button>
+        </div>
+
         <section className="pt-5">
           <header className="text-center">
             <p className="small text-muted small text-uppercase mb-1">
-              Carefully created collections
+              Busca en nuestras
             </p>
-            <h2 className="h5 text-uppercase mb-4">Browse our categories</h2>
+            <h2 className="h5 text-uppercase mb-4">categorias</h2>
           </header>
           <div className="row">
             <div className="col-md-4">
-              <a className="category-item" href="shop.html">
-                {/* <img className="img-fluid" src={BASE_URL + "resources/categorias" + imgArticulo[0].img} alt="" /> */}
-                <strong className="category-item-title">Clothes</strong>
-              </a>
-            </div>
-            <div className="col-md-4">
-              <a className="category-item mb-4" href="shop.html">
-                <img className="img-fluid" src={categorie2} alt="" />
-                <strong className="category-item-title">Shoes</strong>
-              </a>
-              <a className="category-item" href="shop.html">
-                <img className="img-fluid" src={categorie3} alt="" />
-                <strong className="category-item-title">Watches</strong>
+              <a className="category-item" onClick={()=>navigate("/Shop")}>
+                <img className="img-fluid" src={categoriaBed} alt="" />
+                <strong className="category-item-title">Dormitorio</strong>
               </a>
             </div>
 
             <div className="col-md-4">
-              <a className="category-item" href="shop.html">
-                <img className="img-fluid" src={categorie4} alt="" />
-                <strong className="category-item-title">Electronics</strong>
+              <a className="category-item mb-4" onClick={()=>navigate("/Shop")}>
+                <img className="img-fluid" src={categorieSala} alt="" />
+                <strong className="category-item-title">Sala</strong>
+              </a>
+              <a className="category-item" onClick={()=>navigate("/Shop")}>
+                <img className="img-fluid" src={categorieBano} alt="" />
+                <strong className="category-item-title">Baño</strong>
+              </a>
+            </div>
+
+            <div className="col-md-4">
+              <a className="category-item" onClick={()=>navigate("/Shop")}>
+                <img className="img-fluid" src={categorieCocina} alt="" />
+                <strong className="category-item-title">Cocina</strong>
               </a>
             </div>
           </div>
@@ -183,48 +298,13 @@ const Home = () => {
         <section className="py-5">
           <header>
             <p className="small text-muted small text-uppercase mb-1">
-              Made the hard way
+              Nosotros hacemos realidad tus sueños
             </p>
-            <h2 className="h5 text-uppercase mb-4">Top trending products</h2>
+            <h2 className="h5 text-uppercase mb-4">
+              Muebles populares
+            </h2>
+            <Carousel/>
           </header>
-          <div className="row">
-            <div className="col-xl-3 col-lg-4 col-sm-6">
-              <div className="product text-center">
-                <div className="position-relative mb-3">
-                  <div className="badge text-white bg-"></div>
-                  <a className="d-block" href="detail.html">
-                    <img className="img-fluid w-100" src={product} alt="..." />
-                  </a>
-                  <div className="product-overlay">
-                    <ul className="mb-0 list-inline">
-                      {/* <li className="list-inline-item m-0 p-0"><a className="btn btn-sm btn-outline-dark" href="#!"><i className="far fa-heart"></i></a></li> */}
-                      <li className="list-inline-item m-0 p-0">
-                        <a className="btn btn-sm btn-dark" href="cart.html">
-                          Add to cart
-                        </a>
-                      </li>
-                      <li className="list-inline-item me-0">
-                        <a
-                          className="btn btn-sm btn-outline-dark"
-                          href="#productView"
-                          data-bs-toggle="modal"
-                        >
-                          <i className="fas fa-expand"></i>
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-                <h6>
-                  {" "}
-                  <a className="reset-anchor" href="detail.html">
-                    Kui Ye Chen’s AirPods
-                  </a>
-                </h6>
-                <p className="small text-muted">$250</p>
-              </div>
-            </div>
-          </div>
         </section>
       </div>
     </div>

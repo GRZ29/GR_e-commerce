@@ -38,7 +38,6 @@ const Articulos = ({ articulos }) => {
                   <li className="list-inline-item mr-0">
                     <a
                       className="btn btn-sm btn-outline-dark"
-                      href="#productView"
                       data-bs-toggle="modal"
                     >
                       <i className="fas fa-expand"></i>

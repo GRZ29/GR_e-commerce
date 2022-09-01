@@ -34,7 +34,7 @@ export default function Categorias({
     <div className="col-lg-3 order-2 order-lg-1">
       <h5 className="text-uppercase mb-4">Categories</h5>
       <div
-        className="py-2 px-4 bg-dark text-white mb-3"
+        className="py-2 px-4 bg-dark text-white mb-3 info-color" 
         style={{ cursor: "pointer" }}
         onClick={() => handleFilterCategorias("todos")}
       >

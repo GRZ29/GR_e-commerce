@@ -5,6 +5,13 @@
   }
 }
 
+strong.category-item-title {
+  cursor: pointer;
+}
+.py-2.px-4.bg-dark.text-white.mb-3 {
+  background-color: #bbc2c9 !important;
+}
+
 .px-3.py-2.mb-1.bg-white {
   float: left;
 }
@@ -51,3 +58,4 @@
     transform: rotate(360deg);
   }
 }
+

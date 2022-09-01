@@ -56,7 +56,7 @@ const Shop = () => {
         <div className="container">
           <div className="row px-4 px-lg-5 py-lg-4 align-items-center">
             <div className="col-lg-6">
-              <h1 className="h2 text-uppercase mb-0">Shop</h1>
+              <h1 className="h2 text-uppercase mb-0">Tienda</h1>
             </div>
             <div className="col-lg-6 text-lg-end">
               <nav aria-label="breadcrumb">
@@ -65,7 +65,7 @@ const Shop = () => {
                     <span className="text-dark">Home</span>
                   </li>
                   <li className="breadcrumb-item active" aria-current="page">
-                    Shop
+                    Tienda
                   </li>
                 </ol>
               </nav>

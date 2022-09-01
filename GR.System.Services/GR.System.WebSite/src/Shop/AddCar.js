@@ -59,7 +59,6 @@ const AddCar = ({ articulo }) => {
         <div className="col-sm-3 pl-sm-0">
           <a
             className="btn btn-dark btn-sm btn-block h-100 d-flex align-items-center justify-content-center px-0"
-            href="cart.html"
           >
             Add to cart
           </a>
@@ -72,13 +71,13 @@ const AddCar = ({ articulo }) => {
         </div>
         <div className="px-3 py-2 mb-1 bg-white text-muted">
           <strong className="text-uppercase text-dark">Category:</strong>
-          <a className="reset-anchor ms-2" href="#!">
+          <a className="reset-anchor ms-2">
             {articulo[0].subCategorias.categorias.nomCategoria}
           </a>
         </div>
         <div className="px-3 py-2 mb-1 bg-white text-muted">
           <strong className="text-uppercase text-dark">Tags:</strong>
-          <a className="reset-anchor ms-2" href="#!">
+          <a className="reset-anchor ms-2">
             Innovation
           </a>
         </div>

@@ -1,13 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { BASE_URL, CreateAPIEndPoint, ENDPOINTS } from "../api";
-import product1 from "../assets/img/product-detail-1.jpg";
-import product2 from "../assets/img/product-detail-2.jpg";
-import product3 from "../assets/img/product-detail-3.jpg";
-import product4 from "../assets/img/product-detail-4.jpg";
 import RenderFreshData from "../hooks/RenderFreshData";
 import { Context } from "../hooks/Context";
 import { useContext } from "react";
 import AddCar from "./AddCar";
+import Carousel from "../Slider/Carousel";
 
 const Details = () => {
   const [imgArticulo, setImgArticulo] = useState([]);
@@ -96,10 +93,8 @@ const Details = () => {
               ))}
             </div>
           </div>
-          {/* <!-- PRODUCT DETAILS--> */}
           <AddCar articulo={articulo} />
         </div>
-        {/* <!-- DETAILS TABS--> */}
         <ul className="nav nav-tabs border-0" id="myTab" role="tablist">
           <li className="nav-item">
             <a
@@ -241,9 +236,8 @@ const Details = () => {
           </div>
         </div>
         {/* <!-- RELATED PRODUCTS--> */}
-        <h2 className="h5 text-uppercase mb-4">Related products</h2>
-        <div className="row">
-          {/* <!-- PRODUCT--> */}
+        <h2 className="h5 text-uppercase mb-4">Muebles populares</h2>
+        {/* <div className="row">
           <div className="col-lg-3 col-sm-6">
             <div className="product text-center skel-loader">
               <div className="d-block mb-3 position-relative">
@@ -283,7 +277,6 @@ const Details = () => {
               <p className="small text-muted">$250</p>
             </div>
           </div>
-          {/* <!-- PRODUCT--> */}
           <div className="col-lg-3 col-sm-6">
             <div className="product text-center skel-loader">
               <div className="d-block mb-3 position-relative">
@@ -323,7 +316,6 @@ const Details = () => {
               <p className="small text-muted">$300</p>
             </div>
           </div>
-          {/* <!-- PRODUCT--> */}
           <div className="col-lg-3 col-sm-6">
             <div className="product text-center skel-loader">
               <div className="d-block mb-3 position-relative">
@@ -363,7 +355,6 @@ const Details = () => {
               <p className="small text-muted">$25</p>
             </div>
           </div>
-          {/* <!-- PRODUCT--> */}
           <div className="col-lg-3 col-sm-6">
             <div className="product text-center skel-loader">
               <div className="d-block mb-3 position-relative">
@@ -403,7 +394,8 @@ const Details = () => {
               <p className="small text-muted">$351</p>
             </div>
           </div>
-        </div>
+        </div> */}
+        <Carousel/>
       </div>
     </section>
   );
