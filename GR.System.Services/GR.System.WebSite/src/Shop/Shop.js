@@ -3,52 +3,27 @@ import Articulos from "./Articulos";
 import Categorias from "./Categorias";
 import { CreateAPIEndPoint, ENDPOINTS } from "../api";
 import useStateContext, { Context } from "../hooks/useStateContext";
+import { useArticulosFetch } from "../hooks/useArticulosFetch";
+import paginador from "../hooks/CustomPaginador";
 
 const Shop = () => {
+  const {
+    loading,
+    data,
+    todosData,
+    handleCategorias,
+    handleSubCategorias,
+    handleReset,
+  } = useArticulosFetch();
+  const [page, setPage] = useState(0);
   const [articulos, setArticulos] = useState([]);
-  const [filter, setFilter] = useState([]);
 
   useEffect(() => {
-    fetchArticulos();
-  }, []);
+    if (loading) return;
+    setArticulos(data[page]);
+  }, [loading, page, data]);
 
-  const fetchArticulos = () => {
-    CreateAPIEndPoint(ENDPOINTS.Articulo)
-      .fetch()
-      .then((res) => {
-        setArticulos(res.data.data);
-        setFilter(res.data.data);
-      })
-      .catch((err) => console.log(err));
-  };
-
-  const handleFilterCategorias = (nomCategoria) => {
-    if (nomCategoria === "todos") {
-      fetchArticulos();
-    } else {
-      let categoriasFilter = filter.filter((articulo) => {
-        return articulo.subCategorias.categorias.nomCategoria === nomCategoria;
-      });
-
-      if (categoriasFilter.length === 0) {
-        alert("no existen articulos en esta Categoria");
-      }
-
-      setArticulos(categoriasFilter);
-    }
-  };
-
-  const handleFilterSubCategorias = (subNomCategoria) => {
-    let subCategoriasFilter = filter.filter((articulo) => {
-      return articulo.subCategorias.nomSubCategoria === subNomCategoria;
-    });
-
-    if (subCategoriasFilter.length === 0) {
-      alert("no existen articulos en esta SubCategoria");
-    }
-
-    setArticulos(subCategoriasFilter);
-  };
+  const handlePage = (index) => setPage(index);
 
   return (
     <div>
@@ -77,9 +52,10 @@ const Shop = () => {
         <div className="container p-0">
           <div className="row">
             <Categorias
-              articulos={articulos}
-              handleFilterCategorias={handleFilterCategorias}
-              handleFilterSubCategorias={handleFilterSubCategorias}
+              // articulos={articulos}
+              handleCategorias={handleCategorias}
+              handleSubCategorias={handleSubCategorias}
+              handleReset={handleReset}
             />
             <div className="col-lg-9 order-1 order-lg-2 mb-5 mb-lg-0">
               <div className="row mb-3 align-items-center">
@@ -108,31 +84,29 @@ const Shop = () => {
               <Articulos articulos={articulos} />
               <nav aria-label="Page navigation example">
                 <ul className="pagination justify-content-center justify-content-lg-end">
-                  <li className="page-item mx-1">
+                  {/* <li className="page-item mx-1">
                     <a className="page-link" href="#!" aria-label="Previous">
                       <span aria-hidden="true">«</span>
                     </a>
-                  </li>
-                  <li className="page-item mx-1 active">
-                    <a className="page-link" href="#!">
-                      1
-                    </a>
-                  </li>
-                  <li className="page-item mx-1">
-                    <a className="page-link" href="#!">
-                      2
-                    </a>
-                  </li>
-                  <li className="page-item mx-1">
-                    <a className="page-link" href="#!">
-                      3
-                    </a>
-                  </li>
-                  <li className="page-item ms-1">
+                  </li> */}
+                  {data.map((_, index) => (
+                    <li
+                      key={index}
+                      className={`page-item mx-1 ${
+                        index === page ? "active" : null
+                      } `}
+                      onClick={() => handlePage(index)}
+                    >
+                      <a className="page-link" href="#!">
+                        {index + 1}
+                      </a>
+                    </li>
+                  ))}
+                  {/* <li className="page-item ms-1">
                     <a className="page-link" href="#!" aria-label="Next">
                       <span aria-hidden="true">»</span>
                     </a>
-                  </li>
+                  </li> */}
                 </ul>
               </nav>
             </div>

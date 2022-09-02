@@ -90,6 +90,22 @@ INSERT [dbo].[Articulos] ([Id], [IdSubCategoria], [IdPrecio], [IdDetalle], [NomA
 GO
 INSERT [dbo].[Articulos] ([Id], [IdSubCategoria], [IdPrecio], [IdDetalle], [NomArticulo], [IdImgPreviewArticulo], [CodArticulo]) VALUES (9, 5, 1, 1, N'Mesa de noche', 3, N'VEL-2203')
 GO
+INSERT [dbo].[Articulos] ([Id], [IdSubCategoria], [IdPrecio], [IdDetalle], [NomArticulo], [IdImgPreviewArticulo], [CodArticulo]) VALUES (10, 4, 1, 1, N'Estante Cocina 02', 2, N'EST-2201')
+GO
+INSERT [dbo].[Articulos] ([Id], [IdSubCategoria], [IdPrecio], [IdDetalle], [NomArticulo], [IdImgPreviewArticulo], [CodArticulo]) VALUES (11, 6, 1, 1, N'Mesa Noche 007', 3, N'VEL-2200')
+GO
+INSERT [dbo].[Articulos] ([Id], [IdSubCategoria], [IdPrecio], [IdDetalle], [NomArticulo], [IdImgPreviewArticulo], [CodArticulo]) VALUES (12, 7, 1, 1, N'Producto 01', 1, N'BAR-2200')
+GO
+INSERT [dbo].[Articulos] ([Id], [IdSubCategoria], [IdPrecio], [IdDetalle], [NomArticulo], [IdImgPreviewArticulo], [CodArticulo]) VALUES (13, 1, 1, 1, N'Cocina Version 09', 2, N'EST-2202')
+GO
+INSERT [dbo].[Articulos] ([Id], [IdSubCategoria], [IdPrecio], [IdDetalle], [NomArticulo], [IdImgPreviewArticulo], [CodArticulo]) VALUES (14, 2, 1, 1, N'Estantes Bebidas', 1, N'BAR-2001')
+GO
+INSERT [dbo].[Articulos] ([Id], [IdSubCategoria], [IdPrecio], [IdDetalle], [NomArticulo], [IdImgPreviewArticulo], [CodArticulo]) VALUES (15, 3, 1, 1, N'Mueble Dormitorio', 4, N'ET-2201')
+GO
+INSERT [dbo].[Articulos] ([Id], [IdSubCategoria], [IdPrecio], [IdDetalle], [NomArticulo], [IdImgPreviewArticulo], [CodArticulo]) VALUES (16, 2, 1, 1, N'Mueble Triple', 1, N'BAR-2207')
+GO
+INSERT [dbo].[Articulos] ([Id], [IdSubCategoria], [IdPrecio], [IdDetalle], [NomArticulo], [IdImgPreviewArticulo], [CodArticulo]) VALUES (17, 1, 1, 1, N'Mueble Doble', 4, N'ET-2210')
+GO
 SET IDENTITY_INSERT [dbo].[Articulos] OFF
 GO
 SET IDENTITY_INSERT [dbo].[ImgArticulos] ON 
@@ -101,6 +117,22 @@ GO
 INSERT [dbo].[ImgArticulos] ([Id], [IdArticulo], [Img]) VALUES (3, 8, N'LOGO.png')
 GO
 INSERT [dbo].[ImgArticulos] ([Id], [IdArticulo], [Img]) VALUES (4, 9, N'LOGO.png')
+GO
+INSERT [dbo].[ImgArticulos] ([Id], [IdArticulo], [Img]) VALUES (5, 10, N'LOGO.png')
+GO
+INSERT [dbo].[ImgArticulos] ([Id], [IdArticulo], [Img]) VALUES (6, 11, N'LOGO.png')
+GO
+INSERT [dbo].[ImgArticulos] ([Id], [IdArticulo], [Img]) VALUES (7, 12, N'LOGO.png')
+GO
+INSERT [dbo].[ImgArticulos] ([Id], [IdArticulo], [Img]) VALUES (8, 13, N'LOGO.png')
+GO
+INSERT [dbo].[ImgArticulos] ([Id], [IdArticulo], [Img]) VALUES (9, 14, N'LOGO.png')
+GO
+INSERT [dbo].[ImgArticulos] ([Id], [IdArticulo], [Img]) VALUES (10, 15, N'LOGO.png')
+GO
+INSERT [dbo].[ImgArticulos] ([Id], [IdArticulo], [Img]) VALUES (11, 16, N'LOGO.png')
+GO
+INSERT [dbo].[ImgArticulos] ([Id], [IdArticulo], [Img]) VALUES (12, 17, N'LOGO.png')
 GO
 SET IDENTITY_INSERT [dbo].[ImgArticulos] OFF
 GO
