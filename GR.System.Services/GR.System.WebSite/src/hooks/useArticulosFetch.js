@@ -6,6 +6,7 @@ export const useArticulosFetch = () => {
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState([]);
   const [todosData, setTodosData] = useState([]);
+  const [name, setName] = useState("");
 
   //llamada api
   const getArticulos = async () => {
@@ -42,6 +43,25 @@ export const useArticulosFetch = () => {
     setData(paginador(todosData));
   };
 
+  const handleInput = (e) => {
+    try {
+      let filter = todosData.filter((a) => {
+        return (
+          a.nomArticulo.toLowerCase().includes(e.target.value.toLowerCase()) ||
+          a.codArticulo.toLowerCase().includes(e.target.value.toLowerCase())
+        );
+      });
+
+      if (filter.length === 0) {
+        setData(paginador(filter));
+      } else {
+        setData(paginador(filter));
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return {
     loading,
     data,
@@ -49,5 +69,6 @@ export const useArticulosFetch = () => {
     handleCategorias,
     handleSubCategorias,
     handleReset,
+    handleInput,
   };
 };

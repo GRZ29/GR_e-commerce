@@ -14,9 +14,11 @@ const Shop = () => {
     handleCategorias,
     handleSubCategorias,
     handleReset,
+    handleInput,
   } = useArticulosFetch();
   const [page, setPage] = useState(0);
   const [articulos, setArticulos] = useState([]);
+  const [checkState, setcheckState] = useState(false);
 
   useEffect(() => {
     if (loading) return;
@@ -24,6 +26,10 @@ const Shop = () => {
   }, [loading, page, data]);
 
   const handlePage = (index) => setPage(index);
+
+  const handleResetPage = () => {
+    setArticulos(data[0]);
+  };
 
   return (
     <div>
@@ -65,23 +71,23 @@ const Shop = () => {
                   </p>
                 </div>
                 <div className="col-lg-6">
-                  <ul className="list-inline d-flex align-items-center justify-content-lg-end mb-0">
-                    <li className="list-inline-item">
-                      <select
-                        className="selectpicker"
-                        data-customclass="form-control form-control-sm"
-                      >
-                        <option value>Sort By </option>
-                        <option value="default">Default sorting </option>
-                        <option value="popularity">Popularity </option>
-                        <option value="low-high">Price: Low to High </option>
-                        <option value="high-low">Price: High to Low </option>
-                      </select>
-                    </li>
-                  </ul>
+                  <div className="d-flex align-items-center justify-content-lg-end mb-0">
+                    <label className="mx-2">Buscar:</label>
+                    <input type="text" onChange={(e) => handleInput(e)} />
+                    {/* <button type="submit">Buscar</button> */}
+                  </div>
                 </div>
               </div>
-              <Articulos articulos={articulos} />
+              {data.length !== 0 ? (
+                articulos === undefined ? (
+                  handleResetPage()
+                ) : (
+                  <Articulos articulos={articulos} />
+                )
+              ) : (
+                <h3>no hay data</h3>
+              )}
+
               <nav aria-label="Page navigation example">
                 <ul className="pagination justify-content-center justify-content-lg-end">
                   {/* <li className="page-item mx-1">
