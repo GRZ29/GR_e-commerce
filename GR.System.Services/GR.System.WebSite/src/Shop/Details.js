@@ -5,6 +5,7 @@ import { Context } from "../hooks/Context";
 import { useContext } from "react";
 import AddCar from "./AddCar";
 import Carousel from "../Slider/Carousel";
+import MoreInfo from "./MoreInfo";
 
 const Details = () => {
   const [imgArticulo, setImgArticulo] = useState([]);
@@ -44,7 +45,6 @@ const Details = () => {
       <div className="container">
         <div className="row mb-5">
           <div className="col-lg-6">
-            {/* <!-- PRODUCT SLIDER--> */}
             <div className="row m-sm-0">
               <div className="col-sm-2 p-sm-0 order-2 order-sm-1 mt-2 mt-sm-0 px-xl-2">
                 <div className="swiper product-slider-thumbs">
@@ -119,11 +119,13 @@ const Details = () => {
               aria-controls="reviews"
               aria-selected="false"
             >
-              Reviews
+              Detalles
             </a>
           </li>
         </ul>
-        <div className="tab-content mb-5" id="myTabContent">
+
+        <MoreInfo articulo={articulo}/>
+        {/* <div className="tab-content mb-5" id="myTabContent">
           <div
             className="tab-pane fade show active"
             id="description"
@@ -132,16 +134,10 @@ const Details = () => {
           >
             <div className="p-4 p-lg-5 bg-white">
               <h6 className="text-uppercase">
-                Product description {idProduct.idSelecyProduct}
+                Descripcion del Producto
               </h6>
               <p className="text-muted text-sm mb-0">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-                nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                sunt in culpa qui officia deserunt mollit anim id est laborum.
+                {articulo[0].detalles.descripcion.descripcionLarga}
               </p>
             </div>
           </div>
@@ -152,89 +148,19 @@ const Details = () => {
             aria-labelledby="reviews-tab"
           >
             <div className="p-4 p-lg-5 bg-white">
-              <div className="row">
-                <div className="col-lg-8">
-                  <div className="d-flex mb-3">
-                    <div className="flex-shrink-0">
-                      <img
-                        className="rounded-circle"
-                        src="img/customer-1.png"
-                        alt=""
-                        width="50"
-                      />
-                    </div>
-                    <div className="ms-3 flex-shrink-1">
-                      <h6 className="mb-0 text-uppercase">Jason Doe</h6>
-                      <p className="small text-muted mb-0 text-uppercase">
-                        20 May 2020
-                      </p>
-                      <ul className="list-inline mb-1 text-xs">
-                        <li className="list-inline-item m-0">
-                          <i className="fas fa-star text-warning"></i>
-                        </li>
-                        <li className="list-inline-item m-0">
-                          <i className="fas fa-star text-warning"></i>
-                        </li>
-                        <li className="list-inline-item m-0">
-                          <i className="fas fa-star text-warning"></i>
-                        </li>
-                        <li className="list-inline-item m-0">
-                          <i className="fas fa-star text-warning"></i>
-                        </li>
-                        <li className="list-inline-item m-0">
-                          <i className="fas fa-star-half-alt text-warning"></i>
-                        </li>
-                      </ul>
-                      <p className="text-sm mb-0 text-muted">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing
-                        elit, sed do eiusmod tempor incididunt ut labore et
-                        dolore magna aliqua.
-                      </p>
-                    </div>
-                  </div>
-                  <div className="d-flex">
-                    <div className="flex-shrink-0">
-                      <img
-                        className="rounded-circle"
-                        src="img/customer-2.png"
-                        alt=""
-                        width="50"
-                      />
-                    </div>
-                    <div className="ms-3 flex-shrink-1">
-                      <h6 className="mb-0 text-uppercase">Jane Doe</h6>
-                      <p className="small text-muted mb-0 text-uppercase">
-                        20 May 2020
-                      </p>
-                      <ul className="list-inline mb-1 text-xs">
-                        <li className="list-inline-item m-0">
-                          <i className="fas fa-star text-warning"></i>
-                        </li>
-                        <li className="list-inline-item m-0">
-                          <i className="fas fa-star text-warning"></i>
-                        </li>
-                        <li className="list-inline-item m-0">
-                          <i className="fas fa-star text-warning"></i>
-                        </li>
-                        <li className="list-inline-item m-0">
-                          <i className="fas fa-star text-warning"></i>
-                        </li>
-                        <li className="list-inline-item m-0">
-                          <i className="fas fa-star-half-alt text-warning"></i>
-                        </li>
-                      </ul>
-                      <p className="text-sm mb-0 text-muted">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing
-                        elit, sed do eiusmod tempor incididunt ut labore et
-                        dolore magna aliqua.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <h6 className="text-uppercase">
+                Descripcion del Producto
+              </h6>
+              <p className="text-muted text-sm mb-0 txts">
+                <label className="text-uppercase">Alto: {articulo[0].detalles.descripcion.alto}</label>
+                <label className="text-uppercase">Ancho: {articulo[0].detalles.descripcion.ancho}</label>
+                <label className="text-uppercase">Fondo: {articulo[0].detalles.descripcion.fondo}</label>
+                <label className="text-uppercase">Dimensiones: {articulo[0].detalles.descripcionAdicional.dimensiones}</label>
+              </p>
             </div>
           </div>
-        </div>
+        </div> */}
+
         {/* <!-- RELATED PRODUCTS--> */}
         <h2 className="h5 text-uppercase mb-4">Muebles populares</h2>
         {/* <div className="row">
