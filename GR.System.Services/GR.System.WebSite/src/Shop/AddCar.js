@@ -25,6 +25,7 @@ const AddCar = ({ articulo }) => {
 
     idCar.push({codigo:articulo[0].codArticulo,color:color,cantidad:cantidad});
     console.log("idCar =>",idCar)
+    idCar.push(RenderFreshData.GetIdSelect(idProduct));
   }
 
   if (!loading == true) {
