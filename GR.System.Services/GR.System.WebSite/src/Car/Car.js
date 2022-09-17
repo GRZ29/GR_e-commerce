@@ -1,7 +1,11 @@
-import React from "react";
-import product3 from "../assets/img/product-detail-3.jpg";
+import React, { useContext } from "react";
+import { CardContext } from "../hooks/CartContext";
+import CartList from "./CartList";
 
 const Car = () => {
+  const { cart, increaseCantidad, decreaseCantidad, removeItem, total } =
+    useContext(CardContext);
+
   return (
     <div className="container">
       {/* <!-- HERO SECTION--> */}
@@ -32,134 +36,12 @@ const Car = () => {
           <div className="col-lg-8 mb-4 mb-lg-0">
             {/* <!-- CART TABLE--> */}
             <div className="table-responsive mb-4">
-              <table className="table text-nowrap">
-                <thead className="bg-light">
-                  <tr>
-                    <th className="border-0 p-3" scope="col">
-                      {" "}
-                      <strong className="text-sm text-uppercase">
-                        Product
-                      </strong>
-                    </th>
-                    <th className="border-0 p-3" scope="col">
-                      {" "}
-                      <strong className="text-sm text-uppercase">Price</strong>
-                    </th>
-                    <th className="border-0 p-3" scope="col">
-                      {" "}
-                      <strong className="text-sm text-uppercase">
-                        Quantity
-                      </strong>
-                    </th>
-                    <th className="border-0 p-3" scope="col">
-                      {" "}
-                      <strong className="text-sm text-uppercase">Total</strong>
-                    </th>
-                    <th className="border-0 p-3" scope="col">
-                      {" "}
-                      <strong className="text-sm text-uppercase"></strong>
-                    </th>
-                  </tr>
-                </thead>
-                <tbody className="border-0">
-                  <tr>
-                    <th className="ps-0 py-3 border-light" scope="row">
-                      <div className="d-flex align-items-center">
-                        <span className="reset-anchor d-block animsition-link">
-                          <img src={product3} alt="..." width="70" />
-                        </span>
-                        <div className="ms-3">
-                          <strong className="h6">
-                            <span className="reset-anchor animsition-link">
-                              Red digital smartwatch
-                            </span>
-                          </strong>
-                        </div>
-                      </div>
-                    </th>
-                    <td className="p-3 align-middle border-light">
-                      <p className="mb-0 small">$250</p>
-                    </td>
-                    <td className="p-3 align-middle border-light">
-                      <div className="border d-flex align-items-center justify-content-between px-3">
-                        <span className="small text-uppercase text-gray headings-font-family">
-                          Quantity
-                        </span>
-                        <div className="quantity">
-                          <button className="dec-btn p-0">
-                            <i className="fas fa-caret-left"></i>
-                          </button>
-                          <input
-                            className="form-control form-control-sm border-0 shadow-0 p-0"
-                            type="text"
-                          />
-                          <button className="inc-btn p-0">
-                            <i className="fas fa-caret-right"></i>
-                          </button>
-                        </div>
-                      </div>
-                    </td>
-                    <td className="p-3 align-middle border-light">
-                      <p className="mb-0 small">$250</p>
-                    </td>
-                    <td className="p-3 align-middle border-light">
-                      <span className="reset-anchor">
-                        <i className="fas fa-trash-alt small text-muted"></i>
-                      </span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th className="ps-0 py-3 border-0" scope="row">
-                      <div className="d-flex align-items-center">
-                        {/* <a className="reset-anchor d-block animsition-link">
-                          <img
-                            src={}
-                            alt="..."
-                            width="70"
-                          />
-                        </a> */}
-                        <div className="ms-3">
-                          <strong className="h6">
-                            <span className="reset-anchor animsition-link">
-                              Apple watch
-                            </span>
-                          </strong>
-                        </div>
-                      </div>
-                    </th>
-                    <td className="p-3 align-middle border-0">
-                      <p className="mb-0 small">$250</p>
-                    </td>
-                    <td className="p-3 align-middle border-0">
-                      <div className="border d-flex align-items-center justify-content-between px-3">
-                        <span className="small text-uppercase text-gray headings-font-family">
-                          Quantity
-                        </span>
-                        <div className="quantity">
-                          <button className="dec-btn p-0">
-                            <i className="fas fa-caret-left"></i>
-                          </button>
-                          <input
-                            className="form-control form-control-sm border-0 shadow-0 p-0"
-                            type="text"
-                          />
-                          <button className="inc-btn p-0">
-                            <i className="fas fa-caret-right"></i>
-                          </button>
-                        </div>
-                      </div>
-                    </td>
-                    <td className="p-3 align-middle border-0">
-                      <p className="mb-0 small">$250</p>
-                    </td>
-                    <td className="p-3 align-middle border-0">
-                      <span className="reset-anchor">
-                        <i className="fas fa-trash-alt small text-muted"></i>
-                      </span>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+              <CartList
+                cart={cart}
+                increaseCantidad={increaseCantidad}
+                decreaseCantidad={decreaseCantidad}
+                removeItem={removeItem}
+              />
             </div>
             {/* <!-- CART NAV--> */}
             <div className="bg-light px-4 py-3">
@@ -196,7 +78,7 @@ const Car = () => {
                     <strong className="text-uppercase small font-weight-bold">
                       Total
                     </strong>
-                    <span>$250</span>
+                    <span>${total}</span>
                   </li>
                   <li>
                     <form>

@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Outlet, Link } from "react-router-dom";
+import { CardContext } from "../hooks/CartContext";
 
 const Layout = () => {
+  const { cartItems } = useContext(CardContext);
+
   return (
     <div className="header bg-white">
       <div className="container px-lg-3">
@@ -45,7 +48,7 @@ const Layout = () => {
                   <Link className="" to="/Cart">
                     Cart
                   </Link>
-                  <small className="text-gray fw-normal">(2)</small>
+                  <small className="text-gray fw-normal">({cartItems})</small>
                 </div>
               </li>
             </ul>

@@ -28,7 +28,6 @@ const Details = () => {
         .fetch()
         .then((res) => {
           setArticulo(res.data);
-          console.log("artiuculos", res.data);
         })
         .catch((err) => console.log(err));
 
@@ -124,7 +123,7 @@ const Details = () => {
           </li>
         </ul>
 
-        <MoreInfo articulo={articulo}/>
+        <MoreInfo articulo={articulo} />
         {/* <div className="tab-content mb-5" id="myTabContent">
           <div
             className="tab-pane fade show active"
@@ -321,7 +320,7 @@ const Details = () => {
             </div>
           </div>
         </div> */}
-        <Carousel/>
+        <Carousel />
       </div>
     </section>
   );

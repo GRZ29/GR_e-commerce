@@ -1,15 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { Context } from "../hooks/Context";
 import { useContext } from "react";
+import { CardContext } from "../hooks/CartContext";
+import { useNavigate } from "react-router-dom";
 
 const AddCar = ({ articulo }) => {
-  const [loading, setLoading] = useState(false);
-  const [color, setColor] = useState("Blanco");
-  const [cantidad,setCantidad] = useState(0);
-  const [checked,setChecked] = useState(false);
+  // const [cantidad, setCantidad] = useState(0);
 
-  const [carritoadd,setCarritoadd] = useState([]);
-  const { idCar, setIdCar } = useContext(Context);
+  // const [carritoadd, setCarritoadd] = useState([]);
+  // const { idCar, setIdCar } = useContext(Context);
+
+  const [color, setColor] = useState("Blanco");
+  const [checked, setChecked] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const { addToCart } = useContext(CardContext);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (!articulo.length == 0) {
@@ -17,15 +22,30 @@ const AddCar = ({ articulo }) => {
     }
   }, [articulo]);
 
-  const addtocar = ()=>{
-    console.log("codigo =>",articulo[0].codArticulo," color =>",color," cantidad =>",cantidad);
+  // const addtocar = () => {
+  //   console.log(
+  //     "codigo =>",
+  //     articulo[0].codArticulo,
+  //     " color =>",
+  //     color,
+  //     " cantidad =>",
+  //     cantidad
+  //   );
 
-    carritoadd.push({codigo:articulo[0].codArticulo,color:color,cantidad:cantidad})
-    console.log("carritoadd =>",carritoadd)
+  //   carritoadd.push({
+  //     codigo: articulo[0].codArticulo,
+  //     color: color,
+  //     cantidad: cantidad,
+  //   });
+  //   console.log("carritoadd =>", carritoadd);
 
-    idCar.push({codigo:articulo[0].codArticulo,color:color,cantidad:cantidad});
-    console.log("idCar =>",idCar)
-  }
+  //   idCar.push({
+  //     codigo: articulo[0].codArticulo,
+  //     color: color,
+  //     cantidad: cantidad,
+  //   });
+  //   console.log("idCar =>", idCar);
+  // };
 
   if (!loading == true) {
     return <div>CARGANDO</div>;
@@ -43,22 +63,23 @@ const AddCar = ({ articulo }) => {
               Cantidad
             </span>
             <div className="quantity">
-                <input
-                  className="form-control border-0 shadow-0 p-0"
-                  value={cantidad}
-                  onChange={
-                    (e) =>setCantidad(e.target.value)
-                  }
-                  type="number"
-                  name="cantidad"
-                />
+              <input
+                className="form-control border-0 shadow-0 p-0"
+                // value={cantidad}
+                // onChange={(e) => setCantidad(e.target.value)}
+                // type="number"
+                // name="cantidad"
+              />
             </div>
           </div>
         </div>
         <div className="col-sm-3 pl-sm-0">
           <a
             className="btn btn-dark btn-sm btn-block h-100 d-flex align-items-center justify-content-center px-0"
-            onClick={() => addtocar()}
+            onClick={() => {
+              addToCart(articulo);
+              navigate("/Cart");
+            }}
           >
             Add to cart
           </a>
@@ -77,16 +98,40 @@ const AddCar = ({ articulo }) => {
         </div>
         <div className="px-3 py-2 mb-1 bg-white text-muted">
           <strong className="text-uppercase text-dark">Tags:</strong>
-          <a className="reset-anchor ms-2">
-            Innovation
-          </a>
+          <a className="reset-anchor ms-2">Innovation</a>
         </div>
         <div className="px-3 py-2 mb-1 bg-white text-muted colores">
-          <strong className="text-uppercase text-dark color-title">Color:</strong>
+          <strong className="text-uppercase text-dark color-title">
+            Color:
+          </strong>
           <a className="reset-anchor ms-2 buttons">
-            <input className="form-check-input chech-blanco" type="radio" name="radioColor" id="radioColor" value="blanco" onChange={() => setChecked(!checked)} onClick={()=>setColor("Blanco")}/>
-            <input className="form-check-input chech-cafe" type="radio" name="radioColor" id="radioColor" value="cafe" onChange={() => setChecked(!checked)} onClick={()=>setColor("Cafe")}/>
-            <input className="form-check-input chech-gris" type="radio" name="radioColor" id="radioColor" value="gris" onChange={() => setChecked(!checked)} onClick={()=>setColor("Gris")}/>
+            <input
+              className="form-check-input chech-blanco"
+              type="radio"
+              name="radioColor"
+              id="radioColor"
+              value="blanco"
+              onChange={() => setChecked(!checked)}
+              onClick={() => setColor("Blanco")}
+            />
+            <input
+              className="form-check-input chech-cafe"
+              type="radio"
+              name="radioColor"
+              id="radioColor"
+              value="cafe"
+              onChange={() => setChecked(!checked)}
+              onClick={() => setColor("Cafe")}
+            />
+            <input
+              className="form-check-input chech-gris"
+              type="radio"
+              name="radioColor"
+              id="radioColor"
+              value="gris"
+              onChange={() => setChecked(!checked)}
+              onClick={() => setColor("Gris")}
+            />
           </a>
         </div>
       </div>
