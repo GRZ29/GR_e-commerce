@@ -46,9 +46,11 @@ const Layout = () => {
                 <div className="nav-link">
                   <i className="fas fa-dolly-flatbed me-1 text-gray"></i>
                   <Link className="" to="/Cart">
-                    Cart
+                    Mi Carrito
                   </Link>
-                  <small className="text-gray fw-normal">({cartItems})</small>
+                  <small className="mx-1 text-bold text-muted">
+                    ({cartItems})
+                  </small>
                 </div>
               </li>
             </ul>

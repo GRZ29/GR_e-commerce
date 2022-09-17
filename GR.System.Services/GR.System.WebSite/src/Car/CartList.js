@@ -12,23 +12,18 @@ export default function CartList({
       <thead className="bg-light">
         <tr>
           <th className="border-0 p-3" scope="col">
-            {" "}
-            <strong className="text-sm text-uppercase">Product</strong>
+            <strong className="text-sm text-uppercase">Articulo</strong>
           </th>
           <th className="border-0 p-3" scope="col">
-            {" "}
-            <strong className="text-sm text-uppercase">Price</strong>
+            <strong className="text-sm text-uppercase">Precio</strong>
           </th>
           <th className="border-0 p-3" scope="col">
-            {" "}
-            <strong className="text-sm text-uppercase">Quantity</strong>
+            <strong className="text-sm text-uppercase">Cantidad</strong>
           </th>
           <th className="border-0 p-3" scope="col">
-            {" "}
             <strong className="text-sm text-uppercase">Total</strong>
           </th>
           <th className="border-0 p-3" scope="col">
-            {" "}
             <strong className="text-sm text-uppercase"></strong>
           </th>
         </tr>
@@ -60,7 +55,7 @@ export default function CartList({
             <td className="p-3 align-middle border-light">
               <div className="border d-flex align-items-center justify-content-between px-3">
                 <span className="small text-uppercase text-gray headings-font-family">
-                  Quantity
+                  Cantidad
                 </span>
                 <div className="quantity">
                   <button className="dec-btn p-0">
