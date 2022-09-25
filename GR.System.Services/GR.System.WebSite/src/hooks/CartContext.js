@@ -33,10 +33,6 @@ function CartProvider({ children }) {
     setCart([...cart].filter((item) => item.id !== id));
   };
 
-  const newTotalArticulo = (cantidad, costo) => {
-    console.log(costo);
-  };
-
   const increaseCantidad = (id) => {
     const newCart = [...cart].map((item) => {
       return item.id === id
@@ -63,12 +59,16 @@ function CartProvider({ children }) {
     }
   };
 
-  const addToCart = (articulo) => {
-    const { id, nomArticulo, precio, imgPreviewArticulos } = articulo[0];
+  const addToCart = (newArticulo) => {
+    const { id, idArticulo, articulos, colores } = newArticulo[0];
+    const { nomArticulo, precio, imgPreviewArticulos } = articulos;
     const { iva, costo } = precio;
     const { img } = imgPreviewArticulos;
+    const { nomColor, precioColor } = colores;
 
-    const item = [...cart].find((item) => item.id === id);
+    const item = [...cart].find(
+      (item) => item.id === id && item.idArticulo === idArticulo
+    );
 
     if (item) {
       increaseCantidad(id);
@@ -76,9 +76,12 @@ function CartProvider({ children }) {
     } else {
       const newItem = {
         id,
+        idArticulo,
         img,
         nomArticulo,
         costo,
+        nomColor,
+        precioColor,
         cantidad: 1,
       };
       setCart([...cart, newItem]);

@@ -15,6 +15,9 @@ export default function CartList({
             <strong className="text-sm text-uppercase">Articulo</strong>
           </th>
           <th className="border-0 p-3" scope="col">
+            <strong className="text-sm text-uppercase">Color</strong>
+          </th>
+          <th className="border-0 p-3" scope="col">
             <strong className="text-sm text-uppercase">Precio</strong>
           </th>
           <th className="border-0 p-3" scope="col">
@@ -49,6 +52,9 @@ export default function CartList({
                 </div>
               </div>
             </th>
+            <td className="p-3 align-middle border-light">
+              <p className="mb-0 small">{item.nomColor}</p>
+            </td>
             <td className="p-3 align-middle border-light">
               <p className="mb-0 small">${item.costo}</p>
             </td>

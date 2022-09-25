@@ -44,6 +44,18 @@ INSERT [dbo].[SubCategorias] ([Id], [NomSubCategoria], [IdCategoria]) VALUES (13
 GO
 SET IDENTITY_INSERT [dbo].[SubCategorias] OFF
 GO
+SET IDENTITY_INSERT [dbo].[Colores] ON 
+GO
+INSERT [dbo].[Colores] ([Id], [NomColor], [PrecioColor], [HexColor]) VALUES (1, N'verde', CAST(100.00 AS Decimal(18, 2)), N'#B8F9D9')
+GO
+INSERT [dbo].[Colores] ([Id], [NomColor], [PrecioColor], [HexColor]) VALUES (2, N'gris', CAST(300.00 AS Decimal(18, 2)), N'#A9A29D')
+GO
+INSERT [dbo].[Colores] ([Id], [NomColor], [PrecioColor], [HexColor]) VALUES (3, N'blanco', CAST(150.00 AS Decimal(18, 2)), N'#000000')
+GO
+INSERT [dbo].[Colores] ([Id], [NomColor], [PrecioColor], [HexColor]) VALUES (4, N'negro', CAST(200.00 AS Decimal(18, 2)), N'#FFFFFF')
+GO
+SET IDENTITY_INSERT [dbo].[Colores] OFF
+GO
 SET IDENTITY_INSERT [dbo].[Precio] ON 
 GO
 INSERT [dbo].[Precio] ([Id], [Iva], [Costo]) VALUES (1, CAST(1.0000 AS Decimal(18, 4)), 17000)
@@ -108,6 +120,30 @@ INSERT [dbo].[Articulos] ([Id], [IdSubCategoria], [IdPrecio], [IdDetalle], [NomA
 GO
 SET IDENTITY_INSERT [dbo].[Articulos] OFF
 GO
+SET IDENTITY_INSERT [dbo].[TipColores] ON 
+GO
+INSERT [dbo].[TipColores] ([Id], [IdColor], [IdArticulo]) VALUES (1, 1, 4)
+GO
+INSERT [dbo].[TipColores] ([Id], [IdColor], [IdArticulo]) VALUES (2, 4, 4)
+GO
+INSERT [dbo].[TipColores] ([Id], [IdColor], [IdArticulo]) VALUES (3, 2, 4)
+GO
+INSERT [dbo].[TipColores] ([Id], [IdColor], [IdArticulo]) VALUES (4, 3, 4)
+GO
+INSERT [dbo].[TipColores] ([Id], [IdColor], [IdArticulo]) VALUES (5, 1, 5)
+GO
+INSERT [dbo].[TipColores] ([Id], [IdColor], [IdArticulo]) VALUES (6, 2, 5)
+GO
+INSERT [dbo].[TipColores] ([Id], [IdColor], [IdArticulo]) VALUES (7, 3, 5)
+GO
+INSERT [dbo].[TipColores] ([Id], [IdColor], [IdArticulo]) VALUES (8, 4, 8)
+GO
+INSERT [dbo].[TipColores] ([Id], [IdColor], [IdArticulo]) VALUES (9, 1, 8)
+GO
+INSERT [dbo].[TipColores] ([Id], [IdColor], [IdArticulo]) VALUES (10, 3, 8)
+GO
+SET IDENTITY_INSERT [dbo].[TipColores] OFF
+GO
 SET IDENTITY_INSERT [dbo].[ImgArticulos] ON 
 GO
 INSERT [dbo].[ImgArticulos] ([Id], [IdArticulo], [Img]) VALUES (1, 4, N'LOGO.png')
@@ -159,4 +195,12 @@ GO
 INSERT [dbo].[__EFMigrationsHistory] ([MigrationId], [ProductVersion]) VALUES (N'20220829041114_fixbugs', N'5.0.0')
 GO
 INSERT [dbo].[__EFMigrationsHistory] ([MigrationId], [ProductVersion]) VALUES (N'20220830015248_SubCategoriasToDb', N'5.0.0')
+GO
+INSERT [dbo].[__EFMigrationsHistory] ([MigrationId], [ProductVersion]) VALUES (N'20220925034655_Cambio de propiedad en la clase Colores', N'5.0.0')
+GO
+INSERT [dbo].[__EFMigrationsHistory] ([MigrationId], [ProductVersion]) VALUES (N'20220925170343_Nueva propiedad en la clase Colores', N'5.0.0')
+GO
+INSERT [dbo].[__EFMigrationsHistory] ([MigrationId], [ProductVersion]) VALUES (N'20220925170422_Cambio nombre propiedad en la clase Colores', N'5.0.0')
+GO
+INSERT [dbo].[__EFMigrationsHistory] ([MigrationId], [ProductVersion]) VALUES (N'20220925170837_Cambio tipo propiedad en la clase Colores', N'5.0.0')
 GO

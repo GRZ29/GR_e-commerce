@@ -3,16 +3,16 @@ import { Context } from "../hooks/Context";
 import { useContext } from "react";
 import { CardContext } from "../hooks/CartContext";
 import { useNavigate } from "react-router-dom";
+import { CreateAPIEndPoint, ENDPOINTS } from "../api";
 
 const AddCar = ({ articulo }) => {
-  // const [cantidad, setCantidad] = useState(0);
-
-  // const [carritoadd, setCarritoadd] = useState([]);
-  // const { idCar, setIdCar } = useContext(Context);
-
-  const [color, setColor] = useState("Blanco");
+  const [colorTip, setColorTip] = useState([]);
   const [checked, setChecked] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [index, setIndex] = useState(0);
+  const [newArticulo, setNewArticulo] = useState([]);
+  const [error, setError] = useState(false);
+
   const { addToCart } = useContext(CardContext);
   const navigate = useNavigate();
 
@@ -22,30 +22,27 @@ const AddCar = ({ articulo }) => {
     }
   }, [articulo]);
 
-  // const addtocar = () => {
-  //   console.log(
-  //     "codigo =>",
-  //     articulo[0].codArticulo,
-  //     " color =>",
-  //     color,
-  //     " cantidad =>",
-  //     cantidad
-  //   );
+  const fetchTipColors = () => {
+    const { idSelectProduct } = JSON.parse(
+      localStorage.getItem("contextIdProduct")
+    );
+    CreateAPIEndPoint(ENDPOINTS.Color)
+      .fetchById(idSelectProduct)
+      .then((res) => setColorTip(res.data))
+      .catch((err) => console.log(err));
+  };
 
-  //   carritoadd.push({
-  //     codigo: articulo[0].codArticulo,
-  //     color: color,
-  //     cantidad: cantidad,
-  //   });
-  //   console.log("carritoadd =>", carritoadd);
+  useEffect(() => {
+    fetchTipColors();
+  }, []);
 
-  //   idCar.push({
-  //     codigo: articulo[0].codArticulo,
-  //     color: color,
-  //     cantidad: cantidad,
-  //   });
-  //   console.log("idCar =>", idCar);
-  // };
+  useEffect(() => {
+    const filterItem = colorTip.filter((items) => {
+      return items.id === index;
+    });
+
+    setNewArticulo(filterItem);
+  }, [index]);
 
   if (!loading == true) {
     return <div>CARGANDO</div>;
@@ -77,11 +74,11 @@ const AddCar = ({ articulo }) => {
           <a
             className="btn btn-dark btn-sm btn-block h-100 d-flex align-items-center justify-content-center px-0"
             onClick={() => {
-              addToCart(articulo);
+              addToCart(newArticulo);
               navigate("/Cart");
             }}
           >
-            Add to cart
+            {`${checked ? `Agregar al carrito` : `Seleccione un color`}`}
           </a>
         </div>
       </div>
@@ -102,37 +99,49 @@ const AddCar = ({ articulo }) => {
         </div>
         <div className="px-3 py-2 mb-1 bg-white text-muted colores">
           <strong className="text-uppercase text-dark color-title">
-            Color:
+            Color: {index}
           </strong>
-          <a className="reset-anchor ms-2 buttons">
-            <input
-              className="form-check-input chech-blanco"
-              type="radio"
-              name="radioColor"
-              id="radioColor"
-              value="blanco"
-              onChange={() => setChecked(!checked)}
-              onClick={() => setColor("Blanco")}
-            />
-            <input
-              className="form-check-input chech-cafe"
-              type="radio"
-              name="radioColor"
-              id="radioColor"
-              value="cafe"
-              onChange={() => setChecked(!checked)}
-              onClick={() => setColor("Cafe")}
-            />
-            <input
-              className="form-check-input chech-gris"
-              type="radio"
-              name="radioColor"
-              id="radioColor"
-              value="gris"
-              onChange={() => setChecked(!checked)}
-              onClick={() => setColor("Gris")}
-            />
-          </a>
+          {colorTip.map((tip, idx) => (
+            <a className="reset-anchor ms-2 buttons" key={idx}>
+              <input
+                className="form-check-input chech-blanco"
+                // style={{ backgroundColor: "#90ee90" }}
+                type="radio"
+                name="radioColor"
+                id="radioColor"
+                value="blanco"
+                onChange={() => setChecked(true)}
+                onClick={() => setIndex(tip.id)}
+              />
+            </a>
+          ))}
+          {/* <input
+          className="form-check-input chech-blanco"
+          type="radio"
+          name="radioColor"
+          id="radioColor"
+          value="blanco"
+          onChange={() => setChecked(!checked)}
+          onClick={() => setColor("Blanco")}
+        />
+        <input
+          className="form-check-input chech-cafe"
+          type="radio"
+          name="radioColor"
+          id="radioColor"
+          value="cafe"
+          onChange={() => setChecked(!checked)}
+          onClick={() => setColor("Cafe")}
+        />
+        <input
+          className="form-check-input chech-gris"
+          type="radio"
+          name="radioColor"
+          id="radioColor"
+          value="gris"
+          onChange={() => setChecked(!checked)}
+          onClick={() => setColor("Gris")}
+        /> */}
         </div>
       </div>
     </div>

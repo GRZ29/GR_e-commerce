@@ -16,6 +16,8 @@ namespace GR.System.Models
         public string NomColor { get; set; }
 
         [Column(TypeName = "decimal(18,2)")]
-        public decimal Precio { get; set; }
+        public decimal PrecioColor { get; set; }
+
+        public string HexColor { get; set; }
     }
 }
