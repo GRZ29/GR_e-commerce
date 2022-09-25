@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { CardContext } from "../hooks/CartContext";
 import CartList from "./CartList";
+import { Link } from "react-router-dom";
 
 const Car = () => {
   const { cart, increaseCantidad, decreaseCantidad, removeItem, total } =
@@ -13,7 +14,7 @@ const Car = () => {
         <div className="container">
           <div className="row px-4 px-lg-5 py-lg-4 align-items-center">
             <div className="col-lg-6">
-              <h1 className="h2 text-uppercase mb-0">Cart</h1>
+              <h1 className="h2 text-uppercase mb-0">Carrito</h1>
             </div>
             <div className="col-lg-6 text-lg-end">
               <nav aria-label="breadcrumb">
@@ -22,7 +23,7 @@ const Car = () => {
                     <span className="text-dark">Home</span>
                   </li>
                   <li className="breadcrumb-item active" aria-current="page">
-                    Cart
+                    Carrito
                   </li>
                 </ol>
               </nav>
@@ -31,7 +32,7 @@ const Car = () => {
         </div>
       </section>
       <section className="py-5">
-        <h2 className="h5 text-uppercase mb-4">Shopping cart</h2>
+        <h2 className="h5 text-uppercase mb-4">Mi Carrito</h2>
         <div className="row">
           <div className="col-lg-8 mb-4 mb-lg-0">
             {/* <!-- CART TABLE--> */}
@@ -47,10 +48,16 @@ const Car = () => {
             <div className="bg-light px-4 py-3">
               <div className="row align-items-center text-center">
                 <div className="col-md-6 mb-3 mb-md-0 text-md-start">
-                  <span className="btn btn-link p-0 text-dark btn-sm">
-                    <i className="fas fa-long-arrow-alt-left me-2"> </i>
-                    Continue shopping
-                  </span>
+                  <Link
+                    className="btn btn-link p-0 text-dark btn-sm"
+                    to="/Shop"
+                  >
+                    <i className="fas fa-long-arrow-alt-left me-2"></i>
+                    Continuar comprando
+                  </Link>
+                  {/* <Link className="nav-link" to="/Shop">
+                  Contacto
+                </Link> */}
                 </div>
                 <div className="col-md-6 text-md-end">
                   <span className="btn btn-outline-dark btn-sm">
@@ -65,23 +72,23 @@ const Car = () => {
           <div className="col-lg-4">
             <div className="card border-0 rounded-0 p-lg-4 bg-light">
               <div className="card-body">
-                <h5 className="text-uppercase mb-4">Cart total</h5>
+                <h5 className="text-uppercase mb-4">Carrito total</h5>
                 <ul className="list-unstyled mb-0">
                   <li className="d-flex align-items-center justify-content-between">
                     <strong className="text-uppercase small font-weight-bold">
                       Subtotal
                     </strong>
-                    <span className="text-muted small">$250</span>
+                    <span className="text-muted small">₡250</span>
                   </li>
                   <li className="border-bottom my-2"></li>
                   <li className="d-flex align-items-center justify-content-between mb-4">
                     <strong className="text-uppercase small font-weight-bold">
                       Total
                     </strong>
-                    <span>${total}</span>
+                    <span>₡{total}</span>
                   </li>
                   <li>
-                    <form>
+                    {/* <form>
                       <div className="input-group mb-0">
                         <input
                           className="form-control"
@@ -96,7 +103,7 @@ const Car = () => {
                           <i className="fas fa-gift me-2"></i>Apply coupon
                         </button>
                       </div>
-                    </form>
+                    </form> */}
                   </li>
                 </ul>
               </div>

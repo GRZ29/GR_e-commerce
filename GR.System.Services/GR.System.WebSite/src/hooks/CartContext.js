@@ -1,4 +1,5 @@
 import { createContext, useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 function getCartFromLocalStorage() {
   return localStorage.getItem("cart")
@@ -12,13 +13,12 @@ function CartProvider({ children }) {
   const [cart, setCart] = useState(getCartFromLocalStorage());
   const [cartItems, setCartItems] = useState(0);
   const [total, setTotal] = useState(0);
-  const [totalPerArticulo, setTotalPerArticulo] = useState(0);
 
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));
 
     let newTotal = cart.reduce((total, cartItem) => {
-      return (total += cartItem.cantidad * cartItem.costo);
+      return (total += cartItem.cantidad * cartItem.precioArticulo);
     }, 0);
     newTotal = parseFloat(newTotal.toFixed(2));
     setTotal(newTotal);
@@ -64,7 +64,7 @@ function CartProvider({ children }) {
     const { nomArticulo, precio, imgPreviewArticulos } = articulos;
     const { iva, costo } = precio;
     const { img } = imgPreviewArticulos;
-    const { nomColor, precioColor } = colores;
+    const { nomColor, precioColor, hexColor } = colores;
 
     const item = [...cart].find(
       (item) => item.id === id && item.idArticulo === idArticulo
@@ -79,9 +79,9 @@ function CartProvider({ children }) {
         idArticulo,
         img,
         nomArticulo,
-        costo,
+        precioArticulo: costo + precioColor,
         nomColor,
-        precioColor,
+        hexColor,
         cantidad: 1,
       };
       setCart([...cart, newItem]);

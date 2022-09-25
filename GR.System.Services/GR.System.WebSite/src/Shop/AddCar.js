@@ -1,20 +1,19 @@
 import React, { useEffect, useState } from "react";
-import { Context } from "../hooks/Context";
 import { useContext } from "react";
 import { CardContext } from "../hooks/CartContext";
-import { useNavigate } from "react-router-dom";
 import { CreateAPIEndPoint, ENDPOINTS } from "../api";
+import { useNavigate } from "react-router-dom";
 
 const AddCar = ({ articulo }) => {
-  const [colorTip, setColorTip] = useState([]);
+  const [itemColors, setItemsColors] = useState([]);
   const [checked, setChecked] = useState(false);
   const [loading, setLoading] = useState(false);
   const [index, setIndex] = useState(0);
   const [newArticulo, setNewArticulo] = useState([]);
   const [error, setError] = useState(false);
+  const navigate = useNavigate();
 
   const { addToCart } = useContext(CardContext);
-  const navigate = useNavigate();
 
   useEffect(() => {
     if (!articulo.length == 0) {
@@ -28,7 +27,7 @@ const AddCar = ({ articulo }) => {
     );
     CreateAPIEndPoint(ENDPOINTS.Color)
       .fetchById(idSelectProduct)
-      .then((res) => setColorTip(res.data))
+      .then((res) => setItemsColors(res.data))
       .catch((err) => console.log(err));
   };
 
@@ -37,19 +36,35 @@ const AddCar = ({ articulo }) => {
   }, []);
 
   useEffect(() => {
-    const filterItem = colorTip.filter((items) => {
-      return items.id === index;
-    });
-
-    setNewArticulo(filterItem);
+    if (itemColors.length !== 0) {
+      const filterItem = itemColors.filter((items) => {
+        return items.id === index;
+      });
+      setNewArticulo(filterItem);
+    }
   }, [index]);
 
   if (!loading == true) {
     return <div>CARGANDO</div>;
   }
 
+  const handleAddCar = () => {
+    if (!checked) {
+      setError(true);
+      return;
+    }
+
+    addToCart(newArticulo);
+    navigate("/Cart");
+  };
+
+  const handleInput = (id) => {
+    setError(false);
+    setIndex(id);
+  };
+
   return (
-    <div className="col-lg-6">
+    <div className="col-lg-6" style={{ textAlign: "left" }}>
       <h1>{articulo[0].nomArticulo} </h1>
       <p className="text-muted lead">₡{articulo[0].precio.costo}</p>
       <p className="text-sm mb-4">{articulo[0].detalles.descripcionCorta}</p>
@@ -73,75 +88,65 @@ const AddCar = ({ articulo }) => {
         <div className="col-sm-3 pl-sm-0">
           <a
             className="btn btn-dark btn-sm btn-block h-100 d-flex align-items-center justify-content-center px-0"
-            onClick={() => {
-              addToCart(newArticulo);
-              navigate("/Cart");
-            }}
+            onClick={() => handleAddCar()}
           >
             {`${checked ? `Agregar al carrito` : `Seleccione un color`}`}
           </a>
         </div>
       </div>
       <div className="type-info">
-        <div className="px-3 py-2 mb-1 bg-white">
-          <strong className="text-uppercase">COD:</strong>
+        <div className="py-2 mb-1 bg-white">
+          <strong className="text-uppercase">Codigo:</strong>
           <span className="ms-2 text-muted">{articulo[0].codArticulo}</span>
         </div>
-        <div className="px-3 py-2 mb-1 bg-white text-muted">
-          <strong className="text-uppercase text-dark">Category:</strong>
+        <div className="py-2 mb-1 bg-white text-muted">
+          <strong className="text-uppercase text-dark">Categoria:</strong>
           <a className="reset-anchor ms-2">
             {articulo[0].subCategorias.categorias.nomCategoria}
           </a>
         </div>
-        <div className="px-3 py-2 mb-1 bg-white text-muted">
-          <strong className="text-uppercase text-dark">Tags:</strong>
+        <div className="py-2 mb-1 bg-white text-muted">
+          <strong className="text-uppercase text-dark">Etiquetas:</strong>
           <a className="reset-anchor ms-2">Innovation</a>
         </div>
-        <div className="px-3 py-2 mb-1 bg-white text-muted colores">
+        {/* <div className="py-2 mb-1 bg-white text-muted">
+          <strong className="text-uppercase text-dark">Precio:</strong>
+          <a className="reset-anchor ms-2">
+            ₡
+            {`${
+              newArticulo.length !== 0
+                ? articulo[0].precio.costo + newArticulo[0].colores.precioColor
+                : articulo[0].precio.costo
+            }`}
+            <span style={{ color: "red" }}> esto es un extra</span>
+          </a>
+        </div> */}
+        <div className="py-2 mb-1 bg-white text-muted colores">
           <strong className="text-uppercase text-dark color-title">
-            Color: {index}
+            Color:
           </strong>
-          {colorTip.map((tip, idx) => (
-            <a className="reset-anchor ms-2 buttons" key={idx}>
-              <input
-                className="form-check-input chech-blanco"
-                // style={{ backgroundColor: "#90ee90" }}
-                type="radio"
-                name="radioColor"
-                id="radioColor"
-                value="blanco"
-                onChange={() => setChecked(true)}
-                onClick={() => setIndex(tip.id)}
-              />
-            </a>
-          ))}
-          {/* <input
-          className="form-check-input chech-blanco"
-          type="radio"
-          name="radioColor"
-          id="radioColor"
-          value="blanco"
-          onChange={() => setChecked(!checked)}
-          onClick={() => setColor("Blanco")}
-        />
-        <input
-          className="form-check-input chech-cafe"
-          type="radio"
-          name="radioColor"
-          id="radioColor"
-          value="cafe"
-          onChange={() => setChecked(!checked)}
-          onClick={() => setColor("Cafe")}
-        />
-        <input
-          className="form-check-input chech-gris"
-          type="radio"
-          name="radioColor"
-          id="radioColor"
-          value="gris"
-          onChange={() => setChecked(!checked)}
-          onClick={() => setColor("Gris")}
-        /> */}
+          {itemColors.length === 0 ? (
+            <h2>no existen colores en este producto</h2>
+          ) : (
+            itemColors.map((item, idx) => (
+              <a className="reset-anchor ms-2 buttons" key={idx}>
+                <input
+                  className="form-check-input chech-blanco"
+                  style={{ backgroundColor: `${item.colores.hexColor}` }}
+                  type="radio"
+                  name="radioColor"
+                  id="radioColor"
+                  onChange={() => setChecked(true)}
+                  onClick={() => handleInput(item.id)}
+                />
+              </a>
+            ))
+          )}
+          {error && (
+            <span style={{ color: "red", fontSize: "8" }}>
+              seleccione un color
+            </span>
+          )}
         </div>
       </div>
     </div>

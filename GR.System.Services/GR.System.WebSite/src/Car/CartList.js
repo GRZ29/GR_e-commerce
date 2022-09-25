@@ -53,10 +53,23 @@ export default function CartList({
               </div>
             </th>
             <td className="p-3 align-middle border-light">
-              <p className="mb-0 small">{item.nomColor}</p>
+              <span
+                style={{
+                  backgroundColor: `${item.hexColor}`,
+                  height: "40px",
+                  width: "40px",
+                  display: "block",
+                  borderRadius: "50%",
+                  position: "relative",
+                  left: "50%",
+                  transform: "translate(-50%)",
+                  border: "4px solid #e3e3e3",
+                  // margin-right: 5px;
+                }}
+              ></span>
             </td>
             <td className="p-3 align-middle border-light">
-              <p className="mb-0 small">${item.costo}</p>
+              <p className="mb-0 small">₡{item.precioArticulo}</p>
             </td>
             <td className="p-3 align-middle border-light">
               <div className="border d-flex align-items-center justify-content-between px-3">
@@ -83,7 +96,9 @@ export default function CartList({
               </div>
             </td>
             <td className="p-3 align-middle border-light">
-              <p className="mb-0 small">${item.costo * item.cantidad}</p>
+              <p className="mb-0 small">
+                ₡{item.precioArticulo * item.cantidad}
+              </p>
             </td>
             <td className="p-3 align-middle border-light">
               <span

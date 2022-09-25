@@ -58,7 +58,13 @@ SET IDENTITY_INSERT [dbo].[Colores] OFF
 GO
 SET IDENTITY_INSERT [dbo].[Precio] ON 
 GO
-INSERT [dbo].[Precio] ([Id], [Iva], [Costo]) VALUES (1, CAST(1.0000 AS Decimal(18, 4)), 17000)
+INSERT [dbo].[Precio] ([Id], [Iva], [Costo]) VALUES (1, CAST(1.0000 AS Decimal(18, 4)), 5000)
+GO
+INSERT [dbo].[Precio] ([Id], [Iva], [Costo]) VALUES (2, CAST(2.0000 AS Decimal(18, 4)), 7500)
+GO
+INSERT [dbo].[Precio] ([Id], [Iva], [Costo]) VALUES (3, CAST(2.5000 AS Decimal(18, 4)), 8095)
+GO
+INSERT [dbo].[Precio] ([Id], [Iva], [Costo]) VALUES (4, CAST(3.0000 AS Decimal(18, 4)), 9425)
 GO
 SET IDENTITY_INSERT [dbo].[Precio] OFF
 GO
@@ -96,27 +102,27 @@ SET IDENTITY_INSERT [dbo].[Articulos] ON
 GO
 INSERT [dbo].[Articulos] ([Id], [IdSubCategoria], [IdPrecio], [IdDetalle], [NomArticulo], [IdImgPreviewArticulo], [CodArticulo]) VALUES (4, 2, 1, 1, N'Estante Vinos', 1, N'BAR-2202')
 GO
-INSERT [dbo].[Articulos] ([Id], [IdSubCategoria], [IdPrecio], [IdDetalle], [NomArticulo], [IdImgPreviewArticulo], [CodArticulo]) VALUES (5, 1, 1, 1, N'Estante cocina', 2, N'EST-2207')
+INSERT [dbo].[Articulos] ([Id], [IdSubCategoria], [IdPrecio], [IdDetalle], [NomArticulo], [IdImgPreviewArticulo], [CodArticulo]) VALUES (5, 1, 2, 1, N'Estante cocina', 2, N'EST-2207')
 GO
-INSERT [dbo].[Articulos] ([Id], [IdSubCategoria], [IdPrecio], [IdDetalle], [NomArticulo], [IdImgPreviewArticulo], [CodArticulo]) VALUES (8, 3, 1, 1, N'Estante Cuarto', 4, N'ET-2203')
+INSERT [dbo].[Articulos] ([Id], [IdSubCategoria], [IdPrecio], [IdDetalle], [NomArticulo], [IdImgPreviewArticulo], [CodArticulo]) VALUES (8, 3, 3, 1, N'Estante Cuarto', 4, N'ET-2203')
 GO
-INSERT [dbo].[Articulos] ([Id], [IdSubCategoria], [IdPrecio], [IdDetalle], [NomArticulo], [IdImgPreviewArticulo], [CodArticulo]) VALUES (9, 5, 1, 1, N'Mesa de noche', 3, N'VEL-2203')
+INSERT [dbo].[Articulos] ([Id], [IdSubCategoria], [IdPrecio], [IdDetalle], [NomArticulo], [IdImgPreviewArticulo], [CodArticulo]) VALUES (9, 5, 4, 1, N'Mesa de noche', 3, N'VEL-2203')
 GO
 INSERT [dbo].[Articulos] ([Id], [IdSubCategoria], [IdPrecio], [IdDetalle], [NomArticulo], [IdImgPreviewArticulo], [CodArticulo]) VALUES (10, 4, 1, 1, N'Estante Cocina 02', 2, N'EST-2201')
 GO
-INSERT [dbo].[Articulos] ([Id], [IdSubCategoria], [IdPrecio], [IdDetalle], [NomArticulo], [IdImgPreviewArticulo], [CodArticulo]) VALUES (11, 6, 1, 1, N'Mesa Noche 007', 3, N'VEL-2200')
+INSERT [dbo].[Articulos] ([Id], [IdSubCategoria], [IdPrecio], [IdDetalle], [NomArticulo], [IdImgPreviewArticulo], [CodArticulo]) VALUES (11, 6, 2, 1, N'Mesa Noche 007', 3, N'VEL-2200')
 GO
-INSERT [dbo].[Articulos] ([Id], [IdSubCategoria], [IdPrecio], [IdDetalle], [NomArticulo], [IdImgPreviewArticulo], [CodArticulo]) VALUES (12, 7, 1, 1, N'Producto 01', 1, N'BAR-2200')
+INSERT [dbo].[Articulos] ([Id], [IdSubCategoria], [IdPrecio], [IdDetalle], [NomArticulo], [IdImgPreviewArticulo], [CodArticulo]) VALUES (12, 7, 3, 1, N'Producto 01', 1, N'BAR-2200')
 GO
-INSERT [dbo].[Articulos] ([Id], [IdSubCategoria], [IdPrecio], [IdDetalle], [NomArticulo], [IdImgPreviewArticulo], [CodArticulo]) VALUES (13, 1, 1, 1, N'Cocina Version 09', 2, N'EST-2202')
+INSERT [dbo].[Articulos] ([Id], [IdSubCategoria], [IdPrecio], [IdDetalle], [NomArticulo], [IdImgPreviewArticulo], [CodArticulo]) VALUES (13, 1, 4, 1, N'Cocina Version 09', 2, N'EST-2202')
 GO
 INSERT [dbo].[Articulos] ([Id], [IdSubCategoria], [IdPrecio], [IdDetalle], [NomArticulo], [IdImgPreviewArticulo], [CodArticulo]) VALUES (14, 2, 1, 1, N'Estantes Bebidas', 1, N'BAR-2001')
 GO
-INSERT [dbo].[Articulos] ([Id], [IdSubCategoria], [IdPrecio], [IdDetalle], [NomArticulo], [IdImgPreviewArticulo], [CodArticulo]) VALUES (15, 3, 1, 1, N'Mueble Dormitorio', 4, N'ET-2201')
+INSERT [dbo].[Articulos] ([Id], [IdSubCategoria], [IdPrecio], [IdDetalle], [NomArticulo], [IdImgPreviewArticulo], [CodArticulo]) VALUES (15, 3, 2, 1, N'Mueble Dormitorio', 4, N'ET-2201')
 GO
-INSERT [dbo].[Articulos] ([Id], [IdSubCategoria], [IdPrecio], [IdDetalle], [NomArticulo], [IdImgPreviewArticulo], [CodArticulo]) VALUES (16, 2, 1, 1, N'Mueble Triple', 1, N'BAR-2207')
+INSERT [dbo].[Articulos] ([Id], [IdSubCategoria], [IdPrecio], [IdDetalle], [NomArticulo], [IdImgPreviewArticulo], [CodArticulo]) VALUES (16, 2, 3, 1, N'Mueble Triple', 1, N'BAR-2207')
 GO
-INSERT [dbo].[Articulos] ([Id], [IdSubCategoria], [IdPrecio], [IdDetalle], [NomArticulo], [IdImgPreviewArticulo], [CodArticulo]) VALUES (17, 1, 1, 1, N'Mueble Doble', 4, N'ET-2210')
+INSERT [dbo].[Articulos] ([Id], [IdSubCategoria], [IdPrecio], [IdDetalle], [NomArticulo], [IdImgPreviewArticulo], [CodArticulo]) VALUES (17, 1, 4, 1, N'Mueble Doble', 4, N'ET-2210')
 GO
 SET IDENTITY_INSERT [dbo].[Articulos] OFF
 GO
@@ -141,6 +147,46 @@ GO
 INSERT [dbo].[TipColores] ([Id], [IdColor], [IdArticulo]) VALUES (9, 1, 8)
 GO
 INSERT [dbo].[TipColores] ([Id], [IdColor], [IdArticulo]) VALUES (10, 3, 8)
+GO
+INSERT [dbo].[TipColores] ([Id], [IdColor], [IdArticulo]) VALUES (1002, 1, 9)
+GO
+INSERT [dbo].[TipColores] ([Id], [IdColor], [IdArticulo]) VALUES (1003, 2, 9)
+GO
+INSERT [dbo].[TipColores] ([Id], [IdColor], [IdArticulo]) VALUES (1004, 3, 10)
+GO
+INSERT [dbo].[TipColores] ([Id], [IdColor], [IdArticulo]) VALUES (1005, 4, 10)
+GO
+INSERT [dbo].[TipColores] ([Id], [IdColor], [IdArticulo]) VALUES (1006, 2, 11)
+GO
+INSERT [dbo].[TipColores] ([Id], [IdColor], [IdArticulo]) VALUES (1007, 4, 11)
+GO
+INSERT [dbo].[TipColores] ([Id], [IdColor], [IdArticulo]) VALUES (1008, 1, 12)
+GO
+INSERT [dbo].[TipColores] ([Id], [IdColor], [IdArticulo]) VALUES (1009, 4, 12)
+GO
+INSERT [dbo].[TipColores] ([Id], [IdColor], [IdArticulo]) VALUES (1010, 2, 13)
+GO
+INSERT [dbo].[TipColores] ([Id], [IdColor], [IdArticulo]) VALUES (1011, 3, 13)
+GO
+INSERT [dbo].[TipColores] ([Id], [IdColor], [IdArticulo]) VALUES (1012, 1, 14)
+GO
+INSERT [dbo].[TipColores] ([Id], [IdColor], [IdArticulo]) VALUES (1013, 4, 14)
+GO
+INSERT [dbo].[TipColores] ([Id], [IdColor], [IdArticulo]) VALUES (1014, 2, 14)
+GO
+INSERT [dbo].[TipColores] ([Id], [IdColor], [IdArticulo]) VALUES (1015, 3, 14)
+GO
+INSERT [dbo].[TipColores] ([Id], [IdColor], [IdArticulo]) VALUES (1016, 1, 15)
+GO
+INSERT [dbo].[TipColores] ([Id], [IdColor], [IdArticulo]) VALUES (1017, 2, 15)
+GO
+INSERT [dbo].[TipColores] ([Id], [IdColor], [IdArticulo]) VALUES (1018, 3, 16)
+GO
+INSERT [dbo].[TipColores] ([Id], [IdColor], [IdArticulo]) VALUES (1019, 4, 16)
+GO
+INSERT [dbo].[TipColores] ([Id], [IdColor], [IdArticulo]) VALUES (1020, 2, 17)
+GO
+INSERT [dbo].[TipColores] ([Id], [IdColor], [IdArticulo]) VALUES (1021, 3, 17)
 GO
 SET IDENTITY_INSERT [dbo].[TipColores] OFF
 GO
