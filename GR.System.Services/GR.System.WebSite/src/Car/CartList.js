@@ -77,20 +77,20 @@ export default function CartList({
                   Cantidad
                 </span>
                 <div className="quantity">
-                  <button className="dec-btn p-0">
-                    <i
-                      className="fas fa-caret-left"
-                      onClick={() => decreaseCantidad(item.id, item.cantidad)}
-                    ></i>
+                  <button
+                    className="dec-btn p-0"
+                    onClick={() => decreaseCantidad(item.id, item.cantidad)}
+                  >
+                    <i className="fas fa-caret-left"></i>
                   </button>
                   <span className="form-control form-control-sm border-0 shadow-0">
                     {item.cantidad}
                   </span>
-                  <button className="inc-btn p-0">
-                    <i
-                      className="fas fa-caret-right"
-                      onClick={() => increaseCantidad(item.id)}
-                    ></i>
+                  <button
+                    className="inc-btn p-0"
+                    onClick={() => increaseCantidad(item.id, 1)}
+                  >
+                    <i className="fas fa-caret-right"></i>
                   </button>
                 </div>
               </div>

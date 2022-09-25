@@ -33,12 +33,12 @@ function CartProvider({ children }) {
     setCart([...cart].filter((item) => item.id !== id));
   };
 
-  const increaseCantidad = (id) => {
+  const increaseCantidad = (id, cantidad) => {
     const newCart = [...cart].map((item) => {
       return item.id === id
         ? {
             ...item,
-            cantidad: item.cantidad + 1,
+            cantidad: item.cantidad + cantidad,
           }
         : { ...item };
     });
@@ -59,7 +59,8 @@ function CartProvider({ children }) {
     }
   };
 
-  const addToCart = (newArticulo) => {
+  const addToCart = (newArticulo, cantidad) => {
+    console.log(cantidad);
     const { id, idArticulo, articulos, colores } = newArticulo[0];
     const { nomArticulo, precio, imgPreviewArticulos } = articulos;
     const { iva, costo } = precio;
@@ -71,7 +72,7 @@ function CartProvider({ children }) {
     );
 
     if (item) {
-      increaseCantidad(id);
+      increaseCantidad(id, cantidad);
       return;
     } else {
       const newItem = {
@@ -82,7 +83,7 @@ function CartProvider({ children }) {
         precioArticulo: costo + precioColor,
         nomColor,
         hexColor,
-        cantidad: 1,
+        cantidad,
       };
       setCart([...cart, newItem]);
     }

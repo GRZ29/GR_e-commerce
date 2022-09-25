@@ -11,6 +11,8 @@ const AddCar = ({ articulo }) => {
   const [index, setIndex] = useState(0);
   const [newArticulo, setNewArticulo] = useState([]);
   const [error, setError] = useState(false);
+  const [cantidad, setCantidad] = useState(1);
+
   const navigate = useNavigate();
 
   const { addToCart } = useContext(CardContext);
@@ -54,13 +56,20 @@ const AddCar = ({ articulo }) => {
       return;
     }
 
-    addToCart(newArticulo);
+    addToCart(newArticulo, cantidad);
     navigate("/Cart");
   };
 
   const handleInput = (id) => {
     setError(false);
     setIndex(id);
+  };
+
+  const checkNumber = (num) => {
+    if (num < 1) {
+      return 1;
+    }
+    return num;
   };
 
   return (
@@ -75,13 +84,29 @@ const AddCar = ({ articulo }) => {
               Cantidad
             </span>
             <div className="quantity">
-              <input
-                className="form-control border-0 shadow-0 p-0"
-                // value={cantidad}
-                // onChange={(e) => setCantidad(e.target.value)}
-                // type="number"
-                // name="cantidad"
-              />
+              <button
+                className="dec-btn p-0"
+                onClick={() =>
+                  setCantidad((cantidad) => {
+                    let newCantidad = cantidad - 1;
+                    return checkNumber(newCantidad);
+                  })
+                }
+              >
+                <i className="fas fa-caret-left"></i>
+              </button>
+              <span
+                className="form-control form-control-sm border-0 shadow-0"
+                style={{ textAlign: "center" }}
+              >
+                {cantidad}
+              </span>
+              <button
+                className="inc-btn p-0"
+                onClick={() => setCantidad((prev) => prev + 1)}
+              >
+                <i className="fas fa-caret-right"></i>
+              </button>
             </div>
           </div>
         </div>
