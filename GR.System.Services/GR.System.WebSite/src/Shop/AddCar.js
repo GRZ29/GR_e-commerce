@@ -1,21 +1,23 @@
-import React, { useEffect, useState } from "react";
-import { useContext } from "react";
+import React, { useEffect, useState, useContext, useReducer } from "react";
 import { CardContext } from "../hooks/CartContext";
 import { CreateAPIEndPoint, ENDPOINTS } from "../api";
 import { useNavigate } from "react-router-dom";
+import { ACTION_TYPES, cardReduce, INTIAL_STATE } from "../hooks/cardReducer";
+import { ToastContainer, toast } from "react-toastify";
+
+import "react-toastify/dist/ReactToastify.css";
 
 const AddCar = ({ articulo }) => {
-  const [itemColors, setItemsColors] = useState([]);
-  const [checked, setChecked] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [index, setIndex] = useState(0);
-  const [newArticulo, setNewArticulo] = useState([]);
-  const [error, setError] = useState(false);
-  const [cantidad, setCantidad] = useState(1);
-
   const navigate = useNavigate();
-
   const { addToCart } = useContext(CardContext);
+  const [state, dispatch] = useReducer(cardReduce, INTIAL_STATE);
+
+  // const [empty] useState(false)
+
+  toast.error("Seleccione un color", {
+    toastId: "success1",
+  });
 
   useEffect(() => {
     if (!articulo.length == 0) {
@@ -29,7 +31,9 @@ const AddCar = ({ articulo }) => {
     );
     CreateAPIEndPoint(ENDPOINTS.Color)
       .fetchById(idSelectProduct)
-      .then((res) => setItemsColors(res.data))
+      .then((res) => {
+        dispatch({ type: ACTION_TYPES.FETCH_SUCCESS, payload: res.data });
+      })
       .catch((err) => console.log(err));
   };
 
@@ -38,38 +42,26 @@ const AddCar = ({ articulo }) => {
   }, []);
 
   useEffect(() => {
-    if (itemColors.length !== 0) {
-      const filterItem = itemColors.filter((items) => {
-        return items.id === index;
+    if (state.fetchColors.length !== 0) {
+      const newItem = state.fetchColors.filter((items) => {
+        return items.id === state.idSelected;
       });
-      setNewArticulo(filterItem);
+      dispatch({ type: ACTION_TYPES.FETCH_NEW_ITEM, payload: newItem });
     }
-  }, [index]);
+  }, [state.idSelected]);
 
   if (!loading == true) {
     return <div>CARGANDO</div>;
   }
 
   const handleAddCar = () => {
-    if (!checked) {
-      setError(true);
+    if (!state.checked) {
+      dispatch({ type: ACTION_TYPES.ERROR_STATE });
       return;
     }
 
-    addToCart(newArticulo, cantidad);
+    addToCart(state.newItem, state.cantidad);
     navigate("/Cart");
-  };
-
-  const handleInput = (id) => {
-    setError(false);
-    setIndex(id);
-  };
-
-  const checkNumber = (num) => {
-    if (num < 1) {
-      return 1;
-    }
-    return num;
   };
 
   return (
@@ -86,12 +78,7 @@ const AddCar = ({ articulo }) => {
             <div className="quantity">
               <button
                 className="dec-btn p-0"
-                onClick={() =>
-                  setCantidad((cantidad) => {
-                    let newCantidad = cantidad - 1;
-                    return checkNumber(newCantidad);
-                  })
-                }
+                onClick={() => dispatch({ type: ACTION_TYPES.DECREASE })}
               >
                 <i className="fas fa-caret-left"></i>
               </button>
@@ -99,11 +86,11 @@ const AddCar = ({ articulo }) => {
                 className="form-control form-control-sm border-0 shadow-0"
                 style={{ textAlign: "center" }}
               >
-                {cantidad}
+                {state.cantidad}
               </span>
               <button
                 className="inc-btn p-0"
-                onClick={() => setCantidad((prev) => prev + 1)}
+                onClick={() => dispatch({ type: ACTION_TYPES.INCREASE })}
               >
                 <i className="fas fa-caret-right"></i>
               </button>
@@ -115,7 +102,7 @@ const AddCar = ({ articulo }) => {
             className="btn btn-dark btn-sm btn-block h-100 d-flex align-items-center justify-content-center px-0"
             onClick={() => handleAddCar()}
           >
-            {`${checked ? `Agregar al carrito` : `Seleccione un color`}`}
+            {`${state.checked ? `Agregar al carrito` : `Seleccione un color`}`}
           </a>
         </div>
       </div>
@@ -139,8 +126,8 @@ const AddCar = ({ articulo }) => {
           <a className="reset-anchor ms-2">
             ₡
             {`${
-              newArticulo.length !== 0
-                ? articulo[0].precio.costo + newArticulo[0].colores.precioColor
+              newItem.length !== 0
+                ? articulo[0].precio.costo + newItem[0].colores.precioColor
                 : articulo[0].precio.costo
             }`}
             <span style={{ color: "red" }}> esto es un extra</span>
@@ -150,10 +137,10 @@ const AddCar = ({ articulo }) => {
           <strong className="text-uppercase text-dark color-title">
             Color:
           </strong>
-          {itemColors.length === 0 ? (
+          {state.fetchColors.length === 0 ? (
             <h2>no existen colores en este producto</h2>
           ) : (
-            itemColors.map((item, idx) => (
+            state.fetchColors.map((item, idx) => (
               <a className="reset-anchor ms-2 buttons" key={idx}>
                 <input
                   className="form-check-input chech-blanco"
@@ -161,17 +148,17 @@ const AddCar = ({ articulo }) => {
                   type="radio"
                   name="radioColor"
                   id="radioColor"
-                  onChange={() => setChecked(true)}
-                  onClick={() => handleInput(item.id)}
+                  onClick={() =>
+                    dispatch({
+                      type: ACTION_TYPES.ID_SELECTED,
+                      payload: item.id,
+                    })
+                  }
                 />
               </a>
             ))
           )}
-          {error && (
-            <span style={{ color: "red", fontSize: "8" }}>
-              seleccione un color
-            </span>
-          )}
+          {state.error && <ToastContainer />}
         </div>
       </div>
     </div>

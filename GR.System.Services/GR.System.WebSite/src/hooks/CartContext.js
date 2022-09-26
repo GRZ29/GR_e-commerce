@@ -60,7 +60,6 @@ function CartProvider({ children }) {
   };
 
   const addToCart = (newArticulo, cantidad) => {
-    console.log(cantidad);
     const { id, idArticulo, articulos, colores } = newArticulo[0];
     const { nomArticulo, precio, imgPreviewArticulos } = articulos;
     const { iva, costo } = precio;
