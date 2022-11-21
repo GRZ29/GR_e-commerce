@@ -37,5 +37,28 @@ namespace GR.System.Services.Controllers
 
             return Ok(result.Include(x => x.Colores).Include(x => x.Articulos.Detalles).Include(x => x.Articulos.Precio).Include(x => x.Articulos.Precio).Include(x => x.Articulos.ImgPreviewArticulos));
         }
+
+        [HttpPost]
+        public IActionResult Post(List<int> id)
+        {
+            try
+            {
+                List<Articulos> respuesta = new List<Articulos>();
+
+                foreach (var colorId in id)
+                {
+                  var datosEntidad = _context.Articulos.Where(a => a.Id == colorId).ToList();
+                  respuesta.AddRange(datosEntidad);
+
+                }
+
+               return Ok(respuesta);
+
+            }
+            catch (Exception error)
+            {
+                return Ok(error);
+            }
+        }
     }
 }

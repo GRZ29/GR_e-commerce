@@ -8,6 +8,7 @@ import Details from "./Shop/Details";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import { Context } from "./hooks/Context";
+import Checkout from "./Checkout/Checkout";
 
 function App() {
   const [idProduct, setIdProduct] = useState({ idSelectProduct: 0 });
@@ -22,7 +23,10 @@ function App() {
               <Route index element={<Home />} />
               <Route path="Shop" element={<Shop />} />
               <Route path="Details" element={<Details />} />
-              <Route path="Cart" element={<Cart />} />
+              <Route path="Cart">
+                <Route index element={<Cart />} />
+                <Route path="Checkout" element={<Checkout />} />
+              </Route>
               <Route path="*" element={<NoPage />} />
             </Route>
           </Routes>

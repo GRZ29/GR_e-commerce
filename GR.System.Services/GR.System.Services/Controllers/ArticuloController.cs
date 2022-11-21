@@ -44,7 +44,7 @@ namespace GR.System.Services.Controllers
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetArticulosId(int id = 0)
+        public IActionResult GetArticulosById(int id = 0)
         {
             if (id == 0)
                 return new JsonResult(new { Error = "Tienes que buscar un id" });
