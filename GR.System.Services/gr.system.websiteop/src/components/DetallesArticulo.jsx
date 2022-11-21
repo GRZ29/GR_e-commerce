@@ -1,12 +1,17 @@
-import React, { useEffect } from "react";
+import React, { useContext, useState } from "react";
+import { CarritoContext } from "../context/CarritoContext/CarritoContext";
 import { useArticulos } from "../hooks/useArticulos";
-import { fetchColoresById } from "../services/services";
-import { ACTION_TYPES_ARTICULO } from "../utils/articulosReducer/initialStateArticulos";
 
 function DetallesArticulo() {
   const { articulo, colores } = useArticulos();
+  const { addCarrito } = useContext(CarritoContext);
+  const [colorObj, setColorObj] = useState({});
+  const [cantidad, setCantidad] = useState(1);
 
-  console.log(colores);
+  const handleCarrito = () => {
+    if (Object.keys(colorObj).length === 0) return;
+    addCarrito(articulo, cantidad, colorObj);
+  };
 
   return (
     <div className="col-lg-6" style={{ textAlign: "left" }}>
@@ -22,7 +27,7 @@ function DetallesArticulo() {
             <div className="quantity">
               <button
                 className="dec-btn p-0"
-                // onClick={() => dispatch({ type: ACTION_TYPES.DECREASE })}
+                onClick={() => setCantidad((prev) => prev - 1)}
               >
                 <i className="fas fa-caret-left"></i>
               </button>
@@ -30,11 +35,11 @@ function DetallesArticulo() {
                 className="form-control form-control-sm border-0 shadow-0"
                 style={{ textAlign: "center" }}
               >
-                {/* {state.cantidad} */}
+                {cantidad}
               </span>
               <button
                 className="inc-btn p-0"
-                // onClick={() => dispatch({ type: ACTION_TYPES.INCREASE })}
+                onClick={() => setCantidad((prev) => prev + 1)}
               >
                 <i className="fas fa-caret-right"></i>
               </button>
@@ -44,9 +49,13 @@ function DetallesArticulo() {
         <div className="col-sm-3 pl-sm-0">
           <a
             className="btn btn-dark btn-sm btn-block h-100 d-flex align-items-center justify-content-center px-0"
-            // onClick={() => handleAddCar()}
+            onClick={handleCarrito}
           >
-            {/* {`${state.checked ? `Agregar al carrito` : `Seleccione un color`}`} */}
+            {`${
+              Object.keys(colorObj).length !== 0
+                ? `Agregar al carrito`
+                : `Seleccione un color`
+            }`}
           </a>
         </div>
       </div>
@@ -89,12 +98,11 @@ function DetallesArticulo() {
                 type="radio"
                 name="radioColor"
                 id="radioColor"
-                //    onClick={() =>
-                //      dispatch({
-                //        type: ACTION_TYPES.ID_SELECTED,
-                //        payload: item.id,
-                //      })
-                //    }
+                onClick={() => {
+                  const { id, nomColor, precioColor, hexColor } = item.colores;
+                  const idColor = id;
+                  setColorObj({ idColor, nomColor, precioColor, hexColor });
+                }}
               />
             </a>
           ))}

@@ -3,8 +3,6 @@ import { Outlet, Link } from "react-router-dom";
 // import { CardContext } from "../hooks/CartContext";
 
 const Layout = () => {
-  // const { cartItems } = useContext(CardContext);
-
   return (
     <div className="header bg-white">
       <div className="container px-lg-3">
@@ -36,7 +34,7 @@ const Layout = () => {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/Shop">
+                <Link className="nav-link" to="/">
                   Contacto
                 </Link>
               </li>
@@ -45,7 +43,7 @@ const Layout = () => {
               <li className="nav-item">
                 <div className="nav-link">
                   <i className="fas fa-dolly-flatbed me-1 text-gray"></i>
-                  <Link className="" to="/Cart">
+                  <Link className="" to="/carrito">
                     Mi Carrito
                   </Link>
                   <small className="mx-1 text-bold text-muted">
