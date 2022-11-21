@@ -1,8 +1,9 @@
 import React from "react";
 import { Outlet, Link } from "react-router-dom";
-// import { CardContext } from "../hooks/CartContext";
+import { useCarrito } from "../hooks/useCarrito";
 
 const Layout = () => {
+  const { state } = useCarrito();
   return (
     <div className="header bg-white">
       <div className="container px-lg-3">
@@ -47,7 +48,7 @@ const Layout = () => {
                     Mi Carrito
                   </Link>
                   <small className="mx-1 text-bold text-muted">
-                    {/* ({cartItems}) */}
+                    ({state.itemsTotal})
                   </small>
                 </div>
               </li>

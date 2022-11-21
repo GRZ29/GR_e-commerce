@@ -1,5 +1,4 @@
 import { createContext, useEffect, useReducer } from "react";
-import { useCarrito } from "../../hooks/useCarrito";
 import { carritoReducer } from "../../utils/carritoReducer/carritoReducer";
 import {
   ACTION_TYPES_CARRITO,

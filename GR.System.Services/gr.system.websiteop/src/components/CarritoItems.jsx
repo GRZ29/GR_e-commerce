@@ -1,9 +1,9 @@
-import { useContext } from "react";
-import { CarritoContext } from "../context/CarritoContext/CarritoContext";
+import { useCarrito } from "../hooks/useCarrito";
 import { BASE_URL } from "../services/services";
+import { ACTION_TYPES_CARRITO } from "../utils/carritoReducer/initialStateCarrito";
 
 function CarritoItems() {
-  const { state } = useContext(CarritoContext);
+  const { state, dispatch } = useCarrito();
 
   return (
     <table className="table text-nowrap">
@@ -77,7 +77,12 @@ function CarritoItems() {
                 <div className="quantity">
                   <button
                     className="dec-btn p-0"
-                    // onClick={() => decreaseCantidad(item.id, item.cantidad)}
+                    onClick={() =>
+                      dispatch({
+                        type: ACTION_TYPES_CARRITO.DECREASE_CANTIDAD,
+                        payload: { id: idx, cantidad: 1 },
+                      })
+                    }
                   >
                     <i className="fas fa-caret-left"></i>
                   </button>
@@ -86,7 +91,12 @@ function CarritoItems() {
                   </span>
                   <button
                     className="inc-btn p-0"
-                    // onClick={() => increaseCantidad(item.id, 1)}
+                    onClick={() =>
+                      dispatch({
+                        type: ACTION_TYPES_CARRITO.INCREASE_CANTIDAD,
+                        payload: { id: idx, cantidad: 1 },
+                      })
+                    }
                   >
                     <i className="fas fa-caret-right"></i>
                   </button>
@@ -102,7 +112,12 @@ function CarritoItems() {
               <span
                 className="reset-anchor"
                 style={{ cursor: "pointer" }}
-                // onClick={() => removeItem(item.id)}
+                onClick={() =>
+                  dispatch({
+                    type: ACTION_TYPES_CARRITO.REMOVE_ITEM_CARRITO,
+                    payload: { id: idx },
+                  })
+                }
               >
                 <i className="fas fa-trash-alt small text-muted"></i>
               </span>

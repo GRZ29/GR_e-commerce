@@ -2,8 +2,11 @@ import React from "react";
 import { Link } from "react-router-dom";
 import CarritoItems from "../../components/CarritoItems";
 import Hero from "../../components/Hero";
+import { useCarrito } from "../../hooks/useCarrito";
 
 function Carrito() {
+  const { state } = useCarrito();
+
   return (
     <div className="container">
       <Hero />
@@ -12,27 +15,18 @@ function Carrito() {
         <div className="row">
           <div className="col-lg-8 mb-4 mb-lg-0">
             <div className="table-responsive mb-4">
-              {/* <CartList
-                cart={cart}
-                increaseCantidad={increaseCantidad}
-                decreaseCantidad={decreaseCantidad}
-                removeItem={removeItem}
-              /> */}
               <CarritoItems />
             </div>
             <div className="bg-light px-4 py-3">
               <div className="row align-items-center text-center">
                 <div className="col-md-6 mb-3 mb-md-0 text-md-start">
                   <Link
+                    to="/tienda"
                     className="btn btn-link p-0 text-dark btn-sm"
-                    to="/Shop"
                   >
                     <i className="fas fa-long-arrow-alt-left me-2"></i>
                     Continuar comprando
                   </Link>
-                  {/* <Link className="nav-link" to="/Shop">
-                  Contacto
-                </Link> */}
                 </div>
                 <div className="col-md-6 text-md-end">
                   <span className="btn btn-outline-dark btn-sm">
@@ -59,7 +53,13 @@ function Carrito() {
                     <strong className="text-uppercase small font-weight-bold">
                       Total
                     </strong>
-                    {/* <span>₡{total}</span> */}
+                    <span>
+                      ₡
+                      {state.carrito.reduce((total, item) => {
+                        return (total +=
+                          (item.precioColor + item.costo) * item.cantidad);
+                      }, 0)}
+                    </span>
                   </li>
                   <li>
                     {/* <form>

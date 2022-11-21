@@ -1,16 +1,19 @@
-import React, { useContext, useState } from "react";
-import { CarritoContext } from "../context/CarritoContext/CarritoContext";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useArticulos } from "../hooks/useArticulos";
+import { useCarrito } from "../hooks/useCarrito";
+import { checkNumber } from "../utils/carritoReducer/carritoReducer";
 
 function DetallesArticulo() {
   const { articulo, colores } = useArticulos();
-  const { addCarrito } = useContext(CarritoContext);
+  const { addCarrito } = useCarrito();
   const [colorObj, setColorObj] = useState({});
   const [cantidad, setCantidad] = useState(1);
+  const navigate = useNavigate();
 
   const handleCarrito = () => {
-    if (Object.keys(colorObj).length === 0) return;
     addCarrito(articulo, cantidad, colorObj);
+    navigate("/carrito");
   };
 
   return (
@@ -27,7 +30,7 @@ function DetallesArticulo() {
             <div className="quantity">
               <button
                 className="dec-btn p-0"
-                onClick={() => setCantidad((prev) => prev - 1)}
+                onClick={() => setCantidad((prev) => checkNumber(prev - 1))}
               >
                 <i className="fas fa-caret-left"></i>
               </button>
@@ -47,16 +50,18 @@ function DetallesArticulo() {
           </div>
         </div>
         <div className="col-sm-3 pl-sm-0">
-          <a
-            className="btn btn-dark btn-sm btn-block h-100 d-flex align-items-center justify-content-center px-0"
-            onClick={handleCarrito}
+          <button
+            // to="/carrito"
+            className="btn w-100 btn-dark btn-sm btn-block h-100 d-flex align-items-center justify-content-center px-0"
+            disabled={Object.keys(colorObj).length !== 0 ? false : true}
+            onClick={() => handleCarrito()}
           >
             {`${
               Object.keys(colorObj).length !== 0
                 ? `Agregar al carrito`
                 : `Seleccione un color`
             }`}
-          </a>
+          </button>
         </div>
       </div>
       <div className="type-info">
@@ -66,13 +71,13 @@ function DetallesArticulo() {
         </div>
         <div className="py-2 mb-1 bg-white text-muted">
           <strong className="text-uppercase text-dark">Categoria:</strong>
-          <a className="reset-anchor ms-2">
+          <span className="reset-anchor ms-2">
             {articulo[0]?.subCategorias.categorias.nomCategoria}
-          </a>
+          </span>
         </div>
         <div className="py-2 mb-1 bg-white text-muted">
           <strong className="text-uppercase text-dark">Etiquetas:</strong>
-          <a className="reset-anchor ms-2">Innovation</a>
+          <span className="reset-anchor ms-2">Innovation</span>
         </div>
         {/* <div className="py-2 mb-1 bg-white text-muted">
       <strong className="text-uppercase text-dark">Precio:</strong>
@@ -91,7 +96,7 @@ function DetallesArticulo() {
             Color:
           </strong>
           {colores?.map((item, idx) => (
-            <a className="reset-anchor ms-2 buttons" key={idx}>
+            <a href="/" className="reset-anchor ms-2 buttons" key={idx}>
               <input
                 className="form-check-input chech-blanco"
                 style={{ backgroundColor: `${item.colores.hexColor}` }}

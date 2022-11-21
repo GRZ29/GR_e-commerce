@@ -18,12 +18,11 @@ function App() {
             <Routes>
               <Route path="/" element={<Layout />}>
                 <Route index element={<Home />} />
-                <Route path="tienda">
+                <Route path="/tienda">
                   <Route index element={<Tienda />} />
                   <Route path=":id" element={<Detalles />} />
                 </Route>
-                <Route path="carrito" element={<Carrito />} />
-                {/* <Route path="Cart" element={<Cart />} /> */}
+                <Route path="/carrito" element={<Carrito />} />
                 {/* <Route path="*" element={<NoPage />} /> */}
               </Route>
             </Routes>
