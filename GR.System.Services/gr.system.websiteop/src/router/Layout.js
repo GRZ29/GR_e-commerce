@@ -31,7 +31,7 @@ const Layout = () => {
                 </Link>{" "}
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/Shop">
+                <Link className="nav-link" to="/tienda">
                   Tienda
                 </Link>
               </li>
