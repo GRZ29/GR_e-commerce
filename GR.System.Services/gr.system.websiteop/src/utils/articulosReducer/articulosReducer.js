@@ -30,6 +30,49 @@ export const articulosReducer = (state, action) => {
       };
     }
 
+    case ACTION_TYPES_ARTICULO.SET_PAGE:
+      return {
+        ...state,
+        page: action.payload,
+      };
+
+    case ACTION_TYPES_ARTICULO.FILTER_CAT_BY_CATEGORIA:
+      return {
+        ...state,
+        page: 0,
+        articuloByFilters: [...state.initialArticulo].filter(
+          (item) =>
+            item.subCategorias.categorias.nomCategoria ===
+            action.payload.nomCategoria
+        ),
+      };
+
+    case ACTION_TYPES_ARTICULO.FILTER_CAT_BY_SUBCATEGORIA:
+      return {
+        ...state,
+        page: 0,
+        articuloByFilters: [...state.initialArticulo].filter(
+          (item) =>
+            item.subCategorias.nomSubCategoria ===
+            action.payload.nomSubCategoria
+        ),
+      };
+
+    case ACTION_TYPES_ARTICULO.SEARCH_ARTICULO:
+      return {
+        ...state,
+        page: 0,
+        articuloByFilters: [...state.initialArticulo].filter((item) =>
+          item.nomArticulo.toLowerCase().includes(action.payload)
+        ),
+      };
+
+    case ACTION_TYPES_ARTICULO.RESET:
+      return {
+        ...state,
+        articuloByFilters: [],
+      };
+
     default:
       return state;
   }

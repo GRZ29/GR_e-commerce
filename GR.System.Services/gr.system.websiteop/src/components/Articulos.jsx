@@ -4,7 +4,8 @@ import { useArticulos } from "../hooks/useArticulos";
 import { BASE_URL } from "../services/services";
 
 function Articulos() {
-  const { isLoading, initialArticulo } = useArticulos();
+  const { isLoading, initialArticulo, page, articulosPage, articuloByFilters } =
+    useArticulos();
   const navigate = useNavigate();
 
   const navigateWithCode = (id) => {
@@ -16,7 +17,7 @@ function Articulos() {
       {isLoading ? (
         <p>...laoding</p>
       ) : (
-        initialArticulo.map((articulo, idx) => (
+        articulosPage[page].map((articulo, idx) => (
           <div className="col-lg-4 col-sm-6" key={articulo.id}>
             <div className="product text-center">
               <div className="mb-3 position-relative">

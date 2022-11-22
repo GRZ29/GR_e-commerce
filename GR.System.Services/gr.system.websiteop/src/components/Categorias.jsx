@@ -1,4 +1,5 @@
 import React, { useEffect, useReducer } from "react";
+import { useArticulos } from "../hooks/useArticulos";
 import { fetchCategorias, fetchSubCategorias } from "../services/services";
 import { categoriasReducer } from "../utils/categoriasReducer/categoriasReducer";
 import {
@@ -7,6 +8,8 @@ import {
 } from "../utils/categoriasReducer/initialStateCategorias";
 
 function Categorias() {
+  const { handleFilterByCategoria, handleFilterBySubCategoria, handleReset } =
+    useArticulos();
   const [state, dispatch] = useReducer(
     categoriasReducer,
     INITIAL_STATE_CATEGORIA
@@ -43,7 +46,7 @@ function Categorias() {
       <div
         className="py-2 px-4 bg-dark text-white mb-3 info-color"
         style={{ cursor: "pointer" }}
-        // onClick={() => handleReset()}
+        onClick={() => handleReset()}
       >
         <strong className="small text-uppercase fw-bold">
           todos los articulos
@@ -57,7 +60,7 @@ function Categorias() {
             <div
               className="py-2 px-4 bg-dark text-white mb-3"
               style={{ cursor: "pointer" }}
-              // onClick={() => handleCategorias(categoria.nomCategoria)}
+              onClick={() => handleFilterByCategoria(categoria.nomCategoria)}
             >
               <strong className="small text-uppercase fw-bold">
                 {categoria.nomCategoria}
@@ -72,9 +75,11 @@ function Categorias() {
                         <span
                           className="reset-anchor"
                           style={{ cursor: "pointer" }}
-                          //   onClick={() =>
-                          //     handleSubCategorias(subCategoria.nomSubCategoria)
-                          //   }
+                          onClick={() =>
+                            handleFilterBySubCategoria(
+                              subCategoria.nomSubCategoria
+                            )
+                          }
                         >
                           {subCategoria.nomSubCategoria}
                         </span>

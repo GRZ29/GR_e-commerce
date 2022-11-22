@@ -2,8 +2,10 @@ export const INITIAL_STATE_ARTICULO = {
   isLoading: true,
   isError: false,
   initialArticulo: [],
+  articuloByFilters: [],
   articulo: [],
   colores: [],
+  page: 0,
 };
 
 export const ACTION_TYPES_ARTICULO = {
@@ -11,4 +13,9 @@ export const ACTION_TYPES_ARTICULO = {
   FETCH_ERROR: "FETCH_ERROR",
   FETCH_ARTICULO_BY_ID: "FETCH_ARTICULO_BY_ID",
   FETCH_COLORS_BY_ID: "FETCH_COLORS_BY_ID",
+  SET_PAGE: "SET_PAGE",
+  FILTER_CAT_BY_CATEGORIA: "FILTER_CAT_BY_CATEGORIA",
+  FILTER_CAT_BY_SUBCATEGORIA: "FILTER_CAT_BY_SUBCATEGORIA",
+  SEARCH_ARTICULO: "SEARCH_ARTICULO",
+  RESET: "RESET",
 };

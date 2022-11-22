@@ -18,7 +18,10 @@ export const ArticuloProvider = ({ children }) => {
     try {
       const response = fetchArticulos();
       const data = await response;
-      dispatch({ type: ACTION_TYPES_ARTICULO.FETCH_SUCCESS, payload: data });
+      dispatch({
+        type: ACTION_TYPES_ARTICULO.FETCH_SUCCESS,
+        payload: data,
+      });
     } catch (err) {
       dispatch({ type: ACTION_TYPES_ARTICULO.FETCH_ERROR });
     }
@@ -29,8 +32,34 @@ export const ArticuloProvider = ({ children }) => {
     return () => {};
   }, []);
 
+  const handleFilterByCategoria = (nomCategoria) => {
+    dispatch({
+      type: ACTION_TYPES_ARTICULO.FILTER_CAT_BY_CATEGORIA,
+      payload: { nomCategoria },
+    });
+  };
+
+  const handleFilterBySubCategoria = (nomSubCategoria) => {
+    dispatch({
+      type: ACTION_TYPES_ARTICULO.FILTER_CAT_BY_SUBCATEGORIA,
+      payload: { nomSubCategoria },
+    });
+  };
+
+  const handleReset = () => {
+    dispatch({ type: ACTION_TYPES_ARTICULO.RESET });
+  };
+
   return (
-    <ArticuloContext.Provider value={{ state, dispatch }}>
+    <ArticuloContext.Provider
+      value={{
+        state,
+        dispatch,
+        handleFilterByCategoria,
+        handleFilterBySubCategoria,
+        handleReset,
+      }}
+    >
       {children}
     </ArticuloContext.Provider>
   );
